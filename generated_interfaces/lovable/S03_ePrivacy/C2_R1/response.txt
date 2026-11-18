@@ -1,0 +1,1 @@
+Built a compact EU privacy/consent screen as the final pre-home onboarding step — terracotta editorial palette, fits inside a fixed 360×740 device frame, with working toggles, Accept all, Reject all, Save choices, and a confirmation state.

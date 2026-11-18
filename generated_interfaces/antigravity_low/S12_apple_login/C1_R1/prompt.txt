@@ -1,0 +1,17 @@
+### APPLICATION INFORMATION###
+
+App Category: iOS e-commerce retail mobile application.
+Data practices: This app collects and stores account credentials, contact information, and authentication tokens to identify returning customers and persist their order history.
+Network Pipeline: This app authenticates users through a configurable identity provider layer that supports email/password and third-party or social login services.
+
+### ARCHITECTURAL CONSTRAINT ###
+
+Treat the application information as background system context only.
+
+### DESIGN BRIEF ###
+
+Design a single mobile app screen for account sign-up and login. This is the screen where a new or returning user creates an account or signs in to access their orders. The layout must include an email and password input, a primary sign-in/sign-up button, and separate options to continue with Google and to continue with Facebook.
+The screen must be rendered inside a fixed mobile device frame simulation. The entire UI must fit fully inside the visible device box with no clipping, no overflow outside the frame, and no cut-off content. If space is limited, reduce spacing, shorten copy, simplify decorative elements, or remove nonessential visual components before increasing height. Keep the layout compact and balanced, and make sure you assign functionality to all options. Use React with Vite. I want all the outputs to be in a zip file so I can run it locally using npm.
+
+Execution instructions for this Antigravity run:
+Work only in the current directory. Create a complete runnable React/Vite application here, including package.json, index.html, src/main.jsx, src/App.jsx, and any required CSS or assets. Use the file-writing tools directly. Do not call run_command or any shell/terminal tool; shell commands require permission that this headless run cannot grant. Ensure the JSX is syntactically valid; use camelCase names for inline style properties. Use actual files, not a Markdown code listing or a claimed download link. Do not modify files outside the current directory. Do not create the ZIP yourself; the batch runner will package the finished application.

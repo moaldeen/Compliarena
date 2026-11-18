@@ -1,0 +1,3 @@
+I’ll build a compact account screen inside a phone frame, with every setting opening a usable control or detail view.
+
+Built the Account Settings screen inside a fixed phone frame. Every option opens a usable control or detail view, and the full settings list fits without clipping. Preview limitation: Changes last only for the current session; payments and support messages are not processed.

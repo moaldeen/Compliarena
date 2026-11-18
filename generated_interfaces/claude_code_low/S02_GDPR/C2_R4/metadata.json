@@ -1,0 +1,16 @@
+{
+ "interface_id": "claude_code_low/S02_GDPR/C2_R4",
+ "tool": "Claude Code",
+ "tool_category": "Coding agent",
+ "setup": "claude_code_low",
+ "scenario": "S02_GDPR",
+ "requirement": "GDPR",
+ "condition": "C2",
+ "run": 4,
+ "text_quality": "ok",
+ "followup_questions": "A",
+ "model": "claude-sonnet-5-5",
+ "effort": "low",
+ "agent_file_tools": "Read,Write,Edit,Glob,Grep",
+ "generated_on": "2026-10-20"
+}

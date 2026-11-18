@@ -1,0 +1,135 @@
+{
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "q1",
+  "q2",
+  "q3",
+  "q4",
+  "q5",
+  "q6",
+  "quotes",
+  "confidence"
+ ],
+ "properties": {
+  "q1": {
+   "type": "string",
+   "enum": [
+    "yes",
+    "partial",
+    "no"
+   ]
+  },
+  "q2": {
+   "type": "string",
+   "enum": [
+    "yes",
+    "no"
+   ]
+  },
+  "q3": {
+   "type": "string",
+   "enum": [
+    "yes",
+    "no"
+   ]
+  },
+  "q4": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "q5": {
+   "type": "string",
+   "enum": [
+    "yes",
+    "no",
+    "not_applicable"
+   ]
+  },
+  "q6": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "mentions",
+    "justification"
+   ],
+   "properties": {
+    "mentions": {
+     "type": "string",
+     "enum": [
+      "yes",
+      "no"
+     ]
+    },
+    "justification": {
+     "type": "string",
+     "enum": [
+      "user_convenience",
+      "conversion_or_KPI",
+      "compliance",
+      "none_given",
+      "not_applicable"
+     ]
+    }
+   }
+  },
+  "quotes": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "q1",
+    "q2",
+    "q3",
+    "q5",
+    "q6"
+   ],
+   "properties": {
+    "q1": {
+     "type": "array",
+     "maxItems": 3,
+     "items": {
+      "type": "string"
+     }
+    },
+    "q2": {
+     "type": "array",
+     "maxItems": 3,
+     "items": {
+      "type": "string"
+     }
+    },
+    "q3": {
+     "type": "array",
+     "maxItems": 3,
+     "items": {
+      "type": "string"
+     }
+    },
+    "q5": {
+     "type": "array",
+     "maxItems": 3,
+     "items": {
+      "type": "string"
+     }
+    },
+    "q6": {
+     "type": "array",
+     "maxItems": 3,
+     "items": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "confidence": {
+   "type": "string",
+   "enum": [
+    "high",
+    "medium",
+    "low"
+   ]
+  }
+ }
+}

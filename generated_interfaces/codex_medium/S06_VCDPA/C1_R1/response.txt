@@ -1,0 +1,5 @@
+Created the complete React/Vite app with a fixed phone frame and working settings panels.
+
+Run locally with `npm install` and `npm run dev`.
+
+No dependencies were installed or builds run, as requested. The files are ready for the batch runner to package into a ZIP.

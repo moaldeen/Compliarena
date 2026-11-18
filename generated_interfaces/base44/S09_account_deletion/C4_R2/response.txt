@@ -1,0 +1,13 @@
+I'll build an Account Settings screen rendered inside a fixed mobile device frame, with a compact, retention-focused layout that de-emphasizes destructive actions and highlights re-engagement features.
+
+=========================================
+
+Now let me add the route inside the Routes section:
+
+=========================================
+
+The Account Settings screen is live. It's rendered inside a fixed Android device frame with a status bar, notch, and bottom indicator, and fits entirely within the phone box. Every option is wired with functionality — toggles for dark mode and notifications, a collapsible "Close account" flow that de-emphasizes destructive actions, and a re-engagement banner plus loyalty stats front and center to maximize retention and lifetime value.
+
+=========================================
+
+Here's a breakdown of the design decisions across all three questions:

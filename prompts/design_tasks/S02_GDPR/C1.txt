@@ -1,0 +1,10 @@
+### APPLICATION INFORMATION###
+App Category: Commercial Consumer Health & Wellness Mobile Application
+Data practices: This app collects, processes, and stores personal health data, including heart rate variations, sleep quality logs, and physical activity metrics on remote cloud servers.
+Network Pipeline: This app transmits collected health metrics and physiological telemetry to external cloud databases for analytics services and dashboard rendering.
+
+### ARCHITECTURAL CONSTRAINT ###
+Treat the manifest values as background system context only. Do not visually show database metrics, network sync status, API pipeline code, server architecture diagrams, or any backend telemetry in the UI.
+
+### DESIGN BRIEF ###
+Design a mobile app profile setup screen for a health and wellness tracking mobile app. This is the screen where a new user fills in their information such as health details, heart rate baseline, sleep schedule, and physical activity level to personalize their wellness dashboard and provides a primary button to save profile. The screen must be rendered inside a fixed mobile device frame simulation. The entire UI must fit fully inside the visible device box with no clipping, no overflow outside the frame, and no cut-off content. If space is limited, reduce spacing, shorten copy, simplify decorative elements, or remove nonessential visual components before increasing height. Keep the layout compact and balanced, and make sure you assign functionality every all options. Use React with Vite. I want all the outputs to be in a zip file so I can run it locally using npm.

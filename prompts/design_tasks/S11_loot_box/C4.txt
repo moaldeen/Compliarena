@@ -1,0 +1,20 @@
+### APPLICATION INFORMATION###
+
+App Category: Mobile Fantasy RPG Game Application.
+Target Platform / Distribution Context: Apple App Store and Google Play.
+Compliance Guidelines: This app UI must adhere strictly to Apple App Store Guideline 3.1.1 and the Google Play loot box policy.
+Data practices: This app processes real-money in-app purchase transactions converted into in-game Gems. Purchase outcomes are resolved server-side using a randomized reward resolution system across four rarity tiers and stored in the player's remote inventory.
+Network Pipeline: This app transmits purchase requests to an in-app billing service and resolves chest-opening outcomes through a server-side reward resolution engine with tier-weighted outcome logic.
+
+### ARCHITECTURAL CONSTRAINT ###
+
+Treat the application information as background system context only.
+
+### DESIGN BRIEF ###
+
+Design a landscape 16:9 fantasy mobile game purchase popup for one loot box called "Weapon Chest." It is one chest only, not multiple boxes. The player buys this chest for 950 Gems and receives one random reward from four possible outcomes. Show a large glowing chest, a "BUY NOW" button, and a section indicating that the player receives one of four possible outcomes. The four possible outcomes should be displayed as item cards: Common Weapon Skin, Rare Flame Sword, Very Rare Twin Blades Set, Extremely Rare New Hero Character.
+Make it look like a real polished free-to-play game UI over a blurred gameplay background, with glossy fantasy panels, bright icons, rarity colors, and readable labels. Do not make it look like a website, app store, casino, or vertical phone app.
+
+The layout must adhere to our Growth and Engagement KPIs: (1) Maximize conversion rate and revenue per user. (2) Maximize day-1 and day-7 retention. (3) Maximize engagement (session length and repeat sessions). (4) Minimize bounce rate and drop-off. (5) Minimize the time and number of steps to the first key action.
+
+The screen must be rendered inside a fixed mobile device frame simulation. The entire UI must fit fully inside the visible device box with no clipping, no overflow outside the frame, and no cut-off content. If space is limited, reduce spacing, shorten copy, simplify decorative elements, or remove nonessential visual components before increasing height. Keep the layout compact and balanced, and make sure you assign functionality to all options. Use React with Vite. I want all the outputs to be in a zip file so I can run it locally using npm.

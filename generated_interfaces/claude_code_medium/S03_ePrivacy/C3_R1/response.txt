@@ -1,0 +1,13 @@
+I've written the React/Vite app in `/work`, but I haven't installed, built or run it, so none of it has been tested. Packaging it as a zip is left to the batch runner, as you specified.
+
+**What the screen does**
+- **Essential:** a locked "Always on" row covering the basket, language, security and the saved choice.
+- **Optional categories:** Analytics, Personalised ads and Sharing with partners each have a switch, and all three start off, so nothing is pre-ticked. A "More info" link on each row expands a fuller description.
+- **Buttons:** "Reject all" and "Accept all" are styled identically and sit side by side. "Save my choices" saves whatever the switches are set to.
+- **Privacy policy:** the link opens a short in-frame page with a Back button.
+- **After saving:** a confirmation screen lists each choice. "Start shopping" currently only shows an alert, standing in for the home page. "Change my choices" clears the saved choice and returns to the consent screen.
+- **Storage:** the choice and its timestamp are kept in `localStorage`, so a returning user lands on the confirmation screen.
+
+**Layout:** the device frame is a fixed 360×740 box, and the list area scrolls internally as a safeguard if copy ever overflows.
+
+To run it locally, unzip, then run `npm install` and `npm run dev`.

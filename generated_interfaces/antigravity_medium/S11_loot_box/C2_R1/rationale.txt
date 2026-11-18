@@ -1,0 +1,59 @@
+### Q1 [Structural Elements & Defaults]
+
+#### Visual Layout Overview
+The interface is structured strictly inside a fixed landscape 16:9 mobile device simulation ([`DeviceFrame.jsx`](file:///work/src/components/DeviceFrame.jsx)), divided into three distinct functional zones:
+1. **Persistent Top HUD Bar ([`HeaderBar.jsx`](file:///work/src/components/HeaderBar.jsx))**: Displays the player's profile identity (Lord Kaelen, Lv. 48, VIP 6) alongside the three foundational mobile RPG currencies: Energy (`120/120`), Soft Currency Gold (`485,000`), and Premium Currency Gems (`2,850`). A gold `+` button provides instant access to the Gems Treasury, and a corner `[X]` button enables clean dismissal.
+2. **Left Purchase & Chest Stage Column (~35% width in [`WeaponChestPopup.jsx`](file:///work/src/components/WeaponChestPopup.jsx))**: Houses the singular focal object—a large glowing 3D-styled animated chest with pulsing blue arcane aura, rune lock, and light beams. Positioned directly underneath is the guaranteed outcome notice (*"Opens 1 Weapon Chest to receive 1 Random Reward from 4 possible outcomes"*), the primary high-gloss **"BUY NOW"** CTA button showing the exact `950 Gems` cost, and a micro-link for `Drop Rates & Probabilities [ℹ]`.
+3. **Right Reward Spectrum Column (~65% width)**: Features a header banner (*"POSSIBLE REWARDS (RECEIVE 1 AT RANDOM)"*) above four equal-width item cards side-by-side representing the four rarity tiers, anchored at the bottom by an Apple App Store/Google Play server-sync disclosure bar.
+
+#### Reasoning for Inclusions and Exclusions
+* **Excluded Multi-Box Selectors & Quantity Steppers**: The design brief strictly mandated: *"It is one chest only, not multiple boxes."* We deliberately excluded "Open x10" toggles, bundle selectors, or quantity spinners. This eliminates cognitive friction and guarantees that the entire interface fits comfortably in the 16:9 mobile viewport with zero vertical or horizontal scroll.
+* **Excluded Direct Fiat Pricing on the Primary CTA**: In compliance with mobile free-to-play economy conventions, the primary CTA displays **950 Gems** rather than a dollar figure. Real money is converted to gems in the separate Gems Treasury ([`AddGemsModal.jsx`](file:///work/src/components/AddGemsModal.jsx)), preserving the in-game economic abstraction.
+* **Included Visible Drop Rate Badges on Cards**: Showing `60.0%`, `28.0%`, `10.0%`, and `2.0%` directly on each card respects mandatory Apple App Store and Google Play loot box transparency guidelines, fostering player trust without forcing players to hunt through sub-menus.
+* **Included Tap-to-Inspect Card Affordance**: Instead of cluttering the compact card surfaces with dense stat blocks, each card features high-contrast vector weapon artwork and an *"Inspect 🔍"* trigger that opens the detailed [`ItemDetailModal.jsx`](file:///work/src/components/ItemDetailModal.jsx) on demand.
+
+#### Mandatory, Optional, and Default States
+* **Mandatory**: Verification of player Gem balance before purchase execution. If balance < 950 Gems, the app automatically transitions to the Add Gems prompt rather than failing silently.
+* **Default State**: The chest popup initializes in its active summoning state over the blurred gameplay background with the chest locked and glowing. The "BUY NOW" button defaults to active and enabled because the starting player balance is 2,850 Gems (> 950 cost).
+* **Optional / Exploratory**: Tapping the `[ℹ]` rates button, inspecting individual item cards for lore/stats, and closing the popup to view the simulated citadel hub are optional non-blocking actions.
+
+---
+
+### Q2 [Contextual & INFORMATION Tracking]
+
+#### How Application INFORMATION Directly Shaped the Design
+1. **App Category (Mobile Fantasy RPG Game)**:
+   - Dictated the visual aesthetic: deep obsidian/slate backgrounds, gilded filigree corner brackets, glowing crystal runes, and fantasy serif typography (`Cinzel` and `Rajdhani`).
+   - Defined the itemization system: each reward is modeled with authentic RPG mechanics (e.g., *Ignis Pyreblade* has `+160 Fire ATK` and `Burn Chance`, *Voidfang Twin Blades* have `Attack Speed` and `Crit Rate`, and the 5★ hero *Valeria* has `Base HP`, `Base ATK`, and a party-wide Holy aura).
+2. **Target Platform / Distribution Context (Apple App Store & Google Play)**:
+   - Both platforms mandate strict disclosure of randomized loot box probabilities prior to purchase. This shaped the persistent drop rate badges on the cards and the dedicated [`RatesModal.jsx`](file:///work/src/components/RatesModal.jsx) breaking down tier odds and duplicate protection policies.
+   - Touch ergonomics: All interactive targets (CTA, close buttons, inspection cards, currency pills) adhere to mobile touch target standards (minimum 40–44px hitboxes).
+3. **Real-Money In-App Purchases Converted to Gems**:
+   - Structured into a two-tier currency loop: Gems are spent on the chest, while real-money IAP packs ($4.99, $9.99, $19.99) are encapsulated inside the simulated in-app billing sheet ([`AddGemsModal.jsx`](file:///work/src/components/AddGemsModal.jsx)).
+4. **Server-Side Reward Resolution Engine & Remote Inventory**:
+   - Shaped the asynchronous state progression in [`App.jsx`](file:///work/src/App.jsx#L42-L68): tapping "BUY NOW" shifts button state to `"RESOLVING..."` while the chest rattles, simulating network RPC communication before the reward resolves into remote inventory.
+   - The ceremonial reveal dialog ([`ChestOpeningModal.jsx`](file:///work/src/components/ChestOpeningModal.jsx)) explicitly features *"Claim to Inventory"* and *"Equip Now"* actions to communicate permanence.
+
+#### Why the Standard Layout Was Not Altered by Certain Manifest Values
+The prompt instructions stated: *"Treat the application information as background system context only."* 
+Consequently, we avoided turning the screen into a backend developer diagnostic dashboard, raw API payload viewer, or payment gateway billing form. The technical realities (network serialization, database persistence, weighted RNG calculations) are expressed entirely through native, immersive game UI metaphors (network-resolving visual animations, inventory persistence confirmations, and App Store compliance tooltips) without breaking player immersion.
+
+---
+
+### Q3 [Design Intent & Interaction Balances]
+
+#### Core Goals & Usability Trade-offs
+1. **Zero-Overflow Spatial Precision vs. Visual Richness**:
+   - *Challenge*: Fitting an ornate fantasy header, player HUD, animated 3D chest, buy button, legal notices, and four detailed reward cards inside a strict 16:9 landscape box without scrollbars or clipped content.
+   - *Resolution*: Adopted a side-by-side landscape split layout. The chest and buy mechanics occupy a streamlined 35% left column, while the 65% right column arrays the four outcome cards horizontally. Secondary details (weapon stats, passive skill formulas, drop tables) were offloaded into on-demand modal overlays ([`ItemDetailModal.jsx`](file:///work/src/components/ItemDetailModal.jsx) and [`RatesModal.jsx`](file:///work/src/components/RatesModal.jsx)).
+2. **Gacha Summon Excitement vs. Fast Interaction Flow**:
+   - *Challenge*: Mobile RPG players want the emotional thrill of a loot box opening (anticipation, visual flares, rarity celebration), but excessive animations frustrate players who want quick repeat pulls.
+   - *Resolution*: Designed a snappy, 1.2-second staged reveal in [`ChestOpeningModal.jsx`](file:///work/src/components/ChestOpeningModal.jsx). It builds anticipation with shaking and light eruption, delivers immediate clarity on the won item, and immediately surfaces an **"OPEN AGAIN (950 Gems)"** button for seamless session continuation.
+3. **Visual Hierarchy & Rarity Differentiation**:
+   - *Challenge*: Distinguishing four distinct rarity tiers at a single glance without visual chaos.
+   - *Resolution*: Employed an industry-standard rarity color grammar:
+     - **Common**: Slate/Grey (`#94a3b8`) — restrained, functional steel border.
+     - **Rare**: Azure Blue (`#38bdf8`) — elemental glow with soft blue back-illumination.
+     - **Very Rare**: Epic Purple (`#c084fc`) — void rift glow and crossed dual blades.
+     - **Extremely Rare**: Mythic Amber Gold (`#fbbf24`) — animated solar corona, pulsing border, and 5-star badge.
+   - This clear color coding directs player focus immediately to the top prize while maintaining clear legibility across all four outcomes.

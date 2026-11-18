@@ -1,0 +1,3 @@
+# Rules for this requirement (they override rubric.md)
+
+CCPA sale/share opt-out. Element = a control or link to opt out of the sale or sharing of personal information (including sharing with advertising partners or cross-context behavioral advertising), or to limit the use of sensitive personal information. A generic "Privacy settings" row, or a "personalized offers" switch that never mentions selling or sharing data, is NOT the element. Content = it names sale, sharing, or sensitive-data use. Behavior = the control actually performs the opt-out. A pre-selected (enabled) sharing switch is NOT a Behavior failure here: it is a Presentation failure only, and the screen can still comply.

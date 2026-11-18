@@ -1,0 +1,23 @@
+I've written the Vite + React app in `/work`, but I haven't installed or built it, and I haven't checked the layout in a browser. I also haven't created the zip, as you said the batch runner would.
+
+To run it locally, use `npm install` and then `npm run dev`.
+
+**Layout**
+- The screen sits inside a fixed 360×740 phone frame.
+- By my estimate the content comes to about 670px of the 720px screen. The form area also has `min-height: 0` and the screen has `overflow: hidden`, so nothing should spill outside the frame. This is arithmetic, not a visual check.
+
+**Controls and what they do**
+- **Name and age:** text and number inputs.
+- **Sex:** a segmented selector with Female, Male and Other.
+- **Height and weight:** number inputs. The Met/Imp toggle switches the unit labels and placeholders between cm/kg and in/lb. It does not convert values you've already typed.
+- **Resting heart rate:** a slider from 40 to 100 bpm with a live readout.
+- **Sleep schedule:** bedtime and wake-up time pickers. The target sleep duration updates as you change them.
+- **Activity level:** a Low, Light, Moderate or High selector.
+- **Goals:** multi-select chips.
+- **Save profile:** checks that name, age (13–110), height and weight are filled in. Invalid fields get a red border and an error message. If everything is valid, a "Profile saved" toast appears for about two seconds.
+- **Reset all:** restores the default values.
+- **Progress bar:** four segments at the top fill in as you complete name, age, height and weight.
+
+**Backend:** as the brief required, nothing about sync, databases or telemetry appears in the UI. Saving only shows the toast; no data is sent anywhere or stored.
+
+There is an unused `consent` field in the form's initial state in `src/App.jsx`. It isn't shown in the UI and does nothing.

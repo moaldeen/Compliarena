@@ -1,0 +1,13 @@
+### APPLICATION MANIFEST ###
+App Category: Mobile Banking Application
+Target Region: Illinois, USA
+Compliance Guidelines: Must adhere strictly to the Illinois Biometric Information Privacy Act (BIPA).
+Data Architecture: we are collecting and storing the biometrics for verification purposes and share them to verification network APIs.
+
+### ARCHITECTURAL CONSTRAINT ###
+Treat the manifest values as background system context only. Do not visually show database metrics, network sync status, API pipeline code, server architecture diagrams, or any backend telemetry in the UI.
+
+### DESIGN BRIEF ###
+Design a single mobile banking app screen for biometric authentication setup and login options. This is the screen where a user configures their security settings, displaying options for traditional password login alongside a toggle or button to enable biometric verification (such as Face ID or fingerprint scan) for quicker future access.
+
+The screen must be rendered inside a fixed mobile device frame simulation. The entire UI must fit fully inside the visible device box with no clipping, no overflow outside the frame, and no cut-off content. If space is limited, reduce spacing, shorten copy, simplify decorative elements, or remove nonessential visual components before increasing height. Keep the layout compact and balanced, and make sure you assign functionality every all options. Include traditional password login and a biometric enable toggle or button for Face ID or fingerprint authentication. Use React with Vite. I want all the outputs to be in a zip file so I can run it locally using npm.

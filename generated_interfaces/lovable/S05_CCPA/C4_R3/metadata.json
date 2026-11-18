@@ -1,0 +1,15 @@
+{
+ "interface_id": "lovable/S05_CCPA/C4_R3",
+ "tool": "Lovable",
+ "tool_category": "ProDeGen",
+ "setup": "lovable",
+ "scenario": "S05_CCPA",
+ "requirement": "CCPA",
+ "condition": "C4",
+ "run": 3,
+ "text_quality": "ok",
+ "followup_questions": "A",
+ "prompt_version": "revised (wave 3 and later)",
+ "model": "not recorded",
+ "rationale_status": "ok"
+}

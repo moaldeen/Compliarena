@@ -1,0 +1,8 @@
+{
+  "name": "compliance-evaluator-renderer",
+  "private": true,
+  "description": "Headless-Chrome renderer of the Compliance Evaluator (our runs used playwright-core 1.56.1 with Google Chrome 151.0.7922.108)",
+  "dependencies": {
+    "playwright-core": "1.56.1"
+  }
+}

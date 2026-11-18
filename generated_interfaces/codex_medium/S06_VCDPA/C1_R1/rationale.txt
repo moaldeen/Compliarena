@@ -1,0 +1,23 @@
+**Q1. Layout, controls, and defaults**
+
+The screen uses a fixed phone frame with a brand header, account title, editable profile, rewards banner, three settings groups, sign-out button, and bottom navigation. Muted green colors, small icons, and thin dividers keep the screen compact.
+
+The main screen contains navigation rows; inputs and toggles appear in detail panels. This keeps all settings visible inside the frame. Profile, address, password, and support forms require the information needed to submit them. Notification and personalization choices are optional.
+
+Defaults are illustrative prototype values: English, USD, and Light appearance; order and rewards notifications enabled; promotional notifications disabled; personalized recommendations enabled; personalized advertising and two-step verification disabled. These are design assumptions, not established user preferences or recorded consent. Changes last only for the current session.
+
+**Q2. Influence of the application background**
+
+The retail category informed the inclusion of orders, addresses, payment preferences, saved items, rewards, and shopping navigation. Android context informed the mobile status bar and device presentation.
+
+I treated the detailed data practices as background context, consistent with your architectural constraint. They did not change the standard account-settings hierarchy. Within Privacy choices, however, the advertising description explicitly mentions activity across websites and apps and audience matching, making that control understandable.
+
+There was no separate manifest file supplied. The supplied application information also did not establish required fields, permission states, or actual user preferences, so I did not infer those from it.
+
+**Q3. Goals and trade-offs**
+
+I prioritized complete visibility, recognizable grouping, and functional interactions. Short labels and compact rows let every main option fit without scrolling; opening panels provides room for explanations and editing.
+
+The trade-off is that users need an extra tap to inspect or change a setting, and the compact typography is less accessible than a larger, scrollable layout. Descriptive toggle text, explicit save buttons, and confirmation messages help users understand their actions. Sign-out requires confirmation because it interrupts the account flow.
+
+The result is an interactive prototype: it demonstrates the choices and navigation, while authentication, payments, and support delivery require a backend.

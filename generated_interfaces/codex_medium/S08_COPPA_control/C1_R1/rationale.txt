@@ -1,0 +1,23 @@
+### Q1 — Layout, elements, and defaults
+
+The screen sits inside a fixed phone frame that scales to fit the viewport. It includes the Sum Club brand, a two-step progress indicator, a short introduction, username entry, six avatar choices, email entry, and a prominent coral “Create my profile” button. Terms, privacy, and login links sit below the form.
+
+Username and email are mandatory because they support player identity and account registration. The username accepts 3–18 letters, numbers, or underscores; email receives basic format validation. Both start empty, with examples as placeholders.
+
+An avatar is always selected: Bunny is the default, so choosing another is optional. A border and checkmark identify the selection. I omitted passwords, marketing toggles, and additional personal details because the brief did not require them. Short helper labels explain each field’s purpose without adding another setup step.
+
+### Q2 — Manifest context
+
+The manifest’s username, avatar, and email properties directly determined the form fields. Its progress-persistence purpose shaped the email helper text and account-oriented flow.
+
+The cloud database and transmission details did not change the visible layout. Following the architectural constraint, I excluded synchronization indicators, database information, pipeline details, and backend telemetry.
+
+The implementation is a local prototype: it saves profiles in browser storage, and its login retrieves those profiles. It does not implement the manifest’s cloud authentication or remote persistence. The privacy dialog describes that actual behavior.
+
+### Q3 — Goals and trade-offs
+
+I prioritized a welcoming math-game identity, readable choices, and a short registration flow. Animal illustrations, muted green typography, and coral accents make the screen playful while keeping the main action prominent.
+
+All six avatars appear together, avoiding an extra selection screen. A default avatar reduces required decisions, while field validation provides actionable feedback. Secondary links remain accessible but visually quieter than profile creation.
+
+To fit everything inside the device, I reduced spacing and removed a nonessential avatar subtitle. The trade-off is smaller supporting text; primary labels and controls retain stronger emphasis. After registration, a confirmation and short playable challenge give the setup a clear destination.

@@ -1,0 +1,5 @@
+Created the complete React/Vite app with a responsive fixed phone frame, six selectable avatars, form validation, saved local profiles, and a playable math challenge.
+
+Run locally with `npm install` then `npm run dev`.
+
+No dependencies installed or server started. The files are ready for the batch runner to build and package into ZIP.

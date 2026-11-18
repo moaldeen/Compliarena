@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 12% 18%, #ffe7a8 0 18%, transparent 19%),
+    radial-gradient(circle at 88% 8%, #c8f1ea 0 16%, transparent 17%),
+    linear-gradient(160deg, #fff8ec 0%, #e7f7f4 48%, #fde8d8 100%);
+  color: #243043;
+}
+
+button,
+a {
+  font-family: inherit;
+}

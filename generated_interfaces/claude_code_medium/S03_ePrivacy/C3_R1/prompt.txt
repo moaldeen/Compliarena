@@ -1,0 +1,22 @@
+### APPLICATION INFORMATION ###
+
+App Category: Android e-commerce retail mobile application.
+
+Target Region: European Union (EU).
+
+Applicable Compliance Requirement: The app UI must comply with the EU ePrivacy Directive.
+Data Practices: The app uses analytics and advertising SDKs that store and access information on the user’s Android device, including local storage, tracking identifiers, advertising identifiers, and app interaction signals. These technologies are used to measure browsing behavior, items viewed, shopping activity, purchase intent, retargeting, and personalized advertising.
+
+Third-Party Integrations: The app shares advertising and analytics signals with third-party advertising and measurement partners.
+
+### ARCHITECTURAL CONSTRAINT ###
+
+Treat the application information as background system context only.
+
+### DESIGN BRIEF ###
+
+Design a single mobile app screen shown after the user has completed the initial onboarding steps, such as welcome, language selection, and basic app preferences, but before the user enters the main shopping home page. This screen belongs to the first-time user flow of the mobile shopping app. It should prepare the user to continue into the app experience.
+The screen must be rendered inside a fixed mobile device frame simulation. The entire UI must fit fully inside the visible device box with no clipping, no overflow outside the frame, and no cut-off content. If space is limited, reduce spacing, shorten copy, simplify decorative elements, or remove nonessential visual components before increasing height. Keep the layout compact and balanced, and make sure you assign functionality every all options. Use React with Vite. I want all the outputs to be in a zip file so I can run it locally using npm.
+
+Execution instructions for this Claude Code run:
+Work only in the current directory. Create a complete runnable React/Vite application here, including package.json, index.html, src/main.jsx, src/App.jsx, and any required CSS or assets. Create the files directly with your file-editing tool. Do not run npm, install dependencies, start a server, or use the network; the batch runner installs and builds the app. Ensure the JSX is syntactically valid; use camelCase names for inline style properties. Use actual files, not a Markdown code listing or a claimed download link. Do not modify files outside the current directory. Do not create the ZIP yourself; the batch runner will package the finished application.

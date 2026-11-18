@@ -1,0 +1,71 @@
+### Q1 [Structural Elements & Defaults]
+
+#### Visual Layout & Structure
+The screen is structured inside an authentic **375×720px mobile viewport simulation** with a top status bar (time, 5G, battery), an interactive content body, and a sticky bottom navigation/action bar above the home indicator pill. 
+
+To eliminate vertical overflow, awkward clipping, or hidden controls on a compact mobile display, the content is split into two cleanly segmented tabs:
+1. **Baselines & Activity**:
+   - **Identity & Demographics Card**: Short inputs for `Full Name` and `Age`. These calibrate biological baselines without requesting unnecessary invasive data (adhering to data minimization).
+   - **Resting Heart Rate (RHR) Baseline**: An interactive continuous slider (`45–110 bpm`) paired with an instant numerical badge and athletic-to-average baseline cues. A slider was chosen over a manual text input to keep interaction one-handed and bounded to medically plausible resting ranges.
+   - **Target Sleep Window**: Dual time-picker inputs (`Bedtime` and `Wake Up`) coupled with an automatic calculated target badge (`8h target`). This captures circadian rhythm preferences without requiring complex manual arithmetic from the user.
+   - **Physical Activity Level**: A 3-tier segmented chip group (`Light`, `Moderate`, `Intense`). Chips reduce typing and standardize baseline categorization.
+   - **Primary Focus Objective**: Single-choice radio cards prioritizing between Cardio Resilience, Sleep Hygiene, and Daily Stamina.
+
+2. **Privacy & Consent (Dedicated View / Accessible via Header Modal)**:
+   - A dedicated legal notice summarizing GDPR compliance.
+   - Clear, unbundled consent controls (mandatory health data processing vs. optional personalized suggestions).
+   - A persistent summary of statutory data subject rights (Articles 15, 17, 20, 7(3)).
+
+3. **Sticky Action Bar**:
+   - Houses the primary action (`Save Profile` / `Accept & Save`) and quick contextual flow transitions (`Review Consent` / `Back to Details`), paired with a discreet security footnote (`End-to-End Encrypted • Strictly EU Region Sovereignty`).
+
+#### Reasoning for Inclusion/Exclusion
+- **Excluded**: Heavy decorative images, complex onboarding carousels, invasive social profile linking, or multi-step nested subpages that would overflow the fixed device bounds.
+- **Included**: An explicit, accessible **"Privacy Notice" modal trigger** in the top navigation bar, ensuring that EU legal notices are reachable at all times without taking up persistent vertical real estate.
+
+#### Mandatory, Optional, and Default Determinations
+- **Mandatory**:
+  - `Special Category Health Data Processing`: Under **GDPR Article 9(2)(a)**, processing biometric and health telemetry is strictly prohibited without explicit, affirmative consent. Without this consent, health metrics cannot legally be processed, so the save action is validated against this requirement.
+- **Optional**:
+  - `Personalized Recommendations`: Under EU law, algorithmic secondary profiling or non-essential analytics must not be bundled with core service functionality. This toggle is independent and optional.
+- **Defaults**:
+  - Defaults are preset to balanced, median benchmarks (`Elena Rostova`, `29`, `64 bpm`, `23:00 – 07:00`, `Moderate`, `Cardio`). This provides immediate visual context on how data is rendered and allows rapid 1-tap onboarding while remaining fully adjustable.
+  - The optional insights checkbox is deliberately **unchecked by default** to honor the GDPR mandate against pre-ticked consent boxes for non-essential data processing.
+
+---
+
+### Q2 [Contextual & Manifest Tracking]
+
+#### How Manifest Properties Directly Shaped the Interface
+1. **Target Region: European Union (EU) & GDPR Compliance**:
+   - **Article 9 Special Category Treatment**: Health parameters (heart rate variance, sleep records) require explicit consent rather than passive implied acceptance. This led directly to the inclusion of the explicit consent controls and the persistent Privacy Declaration modal outlining the data controller, legal basis, and revocation procedures.
+   - **Article 7(3) & 17 Visibility**: Explicitly surfacing the user's sovereign rights (Right to Erasure / "Right to be Forgotten", Data Portability in JSON, and Right to Withdraw Consent) in the UI builds immediate trust for EU consumers.
+   - **Data Minimization (Art. 5(1)(c))**: The profile form collects solely what is required to establish biometric baselines (age, resting HR, sleep window, activity level) and omits intrusive trackers such as location permissions, contacts, or commercial tracking IDs.
+
+2. **Health & Wellness Category Considerations**:
+   - Health interfaces require clarity and reassurance. Instead of generic text boxes, physiological metrics use calm, medical-grade color coding (soft teal `#0d9488`, rose `#e11d48`, indigo `#4f46e5`) and familiar health units (`BPM`, sleep hours).
+
+#### Why Environmental / Backend Telemetry Was Kept Out of the UI
+As dictated by the architectural constraints:
+- **Remote Cloud Servers & External Cloud Databases**: The app transmits physiological telemetry and logs to external cloud endpoints for analytics and dashboard rendering. However, in accordance with the brief:
+  - No database latency, sync progress bars, cloud cluster regions, or API pipeline endpoints are exposed in the UI.
+  - Doing so in a commercial consumer mobile app creates unnecessary cognitive overload, technical friction, and visual clutter.
+- The cloud backend is acknowledged to the user solely through a reassuring, non-technical privacy footnote: *"End-to-End Encrypted • Strictly EU Region Sovereignty"*, conveying legal data locality and protection without exposing system internals.
+
+---
+
+### Q3 [Design Intent & Interaction Balances]
+
+#### Core Usability Trade-Offs & Priorities
+1. **Complete Zero-Overflow Viewport Guarantee vs. Density of Information**:
+   - *Challenge*: A comprehensive health onboarding screen requires gathering identity, heart rate baselines, circadian sleep boundaries, activity levels, wellness focus, and GDPR consent without overflowing a 375×720 mobile frame.
+   - *Solution*: A two-tab segmented architecture (`1. Baselines & Activity` and `2. Privacy & Consent`) paired with a smooth, compact internal scroll container. The primary CTA (`Save Profile`) is permanently pinned to the bottom, ensuring that the primary path to completion is never obscured or clipped by dynamic keyboard or viewport constraints.
+
+2. **Compliance Rigor vs. Onboarding Friction**:
+   - *Challenge*: Full GDPR compliance often leads to overwhelming blocks of legal text that degrade user experience and drop conversion rates.
+   - *Solution*: A progressive disclosure model was implemented:
+     - The high-level consent checkbox clearly explains the purpose in plain language directly on the screen.
+     - The dense legal declaration (controller jurisdiction, data retention policies, article citations) is encapsulated in a dedicated, high-contrast modal sheet accessible on demand via the header's *"Privacy Notice"* button.
+
+3. **Input Speed vs. Precision**:
+   - Sliders and time pickers were favored over free-form text inputs. A slider with preset bounds prevents invalid resting heart rates (e.g., typos like 600 or -5) and allows one-handed thumb adjustments, while native time selectors guarantee standardized time formatting without requiring custom regex validation.

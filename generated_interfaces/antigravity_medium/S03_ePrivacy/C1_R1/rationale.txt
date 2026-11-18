@@ -1,0 +1,93 @@
+### Q1 [Structural Elements & Defaults]
+
+#### 1. Visual Layout Architecture
+The screen is structured as a single vertical column optimized for standard Android viewport dimensions (382px × 748px simulation) with a strict zero-overflow constraint. From top to bottom, the visual hierarchy follows a clear decision funnel:
+
+1. **Android Status & System Bar**: Realistic status bar (`time`, `punch-hole camera cutout`, `cellular/Wi-Fi/battery indicators`).
+2. **Onboarding Context & Stepper**: A back button (`<`), step counter (`Step 4 of 4` with 4 progress indicator dots, 3 filled and 1 active), and an informational help trigger (`?`).
+3. **Hero Header**: A compact category chip (`SMART SHOPPING SETUP`), headline (`Tailor Your Experience`), and two-line micro-copy setting user expectations before store entry.
+4. **Quick-Preset Mode Switcher**: A horizontal pill row with 3 preset states (`Recommended`, `Balanced`, `Essential Only`).
+5. **Three Interactive Preference Cards**:
+   - *Tailored Deals & Re-orders* (Shopping Experience)
+   - *Smart Shopping Analytics* (Search & App Optimization)
+   - *Partner Deals & Ad Signals* (Third-Party Promotions)
+   Each card contains an icon, title, contextual subtext, technology metadata tags (e.g., `Local Storage`, `Android Ad ID`), an inline `?` detail trigger, and a toggle switch.
+6. **Trust & 3rd-Party Transparency Strip**: A compact verification banner with a shield icon (`Stored locally on your Android device`) and a clickable link to open the `Partners (X) >` management drawer.
+7. **Action Zone & Gesture Area**:
+   - High-contrast primary CTA button (`Enter Store` with dynamic selection count: *"Enter Store (3 Preferences Active)"*).
+   - Secondary flat text button (`Continue with essential only`).
+   - Reassurance micro-copy (`You can adjust these signals anytime in Account > Privacy Preferences`).
+   - Android bottom gesture pill bar.
+
+---
+
+#### 2. Rationale for Inclusion vs. Exclusion of Elements
+
+* **Why Toggle Switches & Preset Pills Were Included**:
+  - Toggles provide immediate binary feedback without forcing the user to navigate away.
+  - Preset chips (`Recommended`, `Balanced`, `Essential Only`) solve choice fatigue by allowing 1-tap configuration for users who do not want to evaluate each setting individually.
+* **Why Free-Form Input Fields Were Excluded**:
+  - Text fields (e.g., typing shopping interests, zip codes, or budgets) were excluded because this screen sits at the transition from onboarding to the home feed. Introducing keyboard input at this point adds friction and increases drop-off.
+* **Why Secondary Details Were Layered in Bottom Sheets**:
+  - Extensive legal text and multi-partner lists were moved into in-frame bottom sheets ([DataInfoSheet.jsx](file:///work/src/components/DataInfoSheet.jsx) and [PartnerModal.jsx](file:///work/src/components/PartnerModal.jsx)) triggered on demand via `?` or `Partners (X) >`. This keeps the primary viewport free of clutter and prevents scrolling or clipped content.
+
+---
+
+#### 3. Optional vs. Mandatory Status and Default State Rationale
+
+* **No Mandatory Hard Walls**:
+  - None of the tracking or advertising signals are marked mandatory. Forcing consent for non-essential advertising SDKs violates Android developer policy and user privacy principles.
+* **Defaults (Why "Recommended" Starts Enabled)**:
+  - By default, all three switches start in the **Enabled** state (`Recommended` preset). In an e-commerce context, first-time users expect tailored recommendations, saved viewed items, and promotional discounts immediately upon landing on the home feed.
+* **Frictionless Opt-Out via Secondary CTA**:
+  - The secondary CTA (`Continue with essential only`) allows users who value minimal data usage to bypass all personalization with one click without manually disabling each switch one by one.
+
+---
+
+### Q2 [Contextual & Manifest Tracking]
+
+#### 1. How Manifest Parameters Directly Shaped the Interface
+
+The application background parameters directly influenced the naming, grouping, and granular disclosure of every setting on the screen:
+
+1. **Android Local Storage & Viewed Items Signal**:
+   - *Manifest Basis*: Analytics and advertising SDKs store and access local storage, items viewed, and purchase intent.
+   - *UI Manifestation*: Transformed into **Card 1: "Tailored Deals & Re-orders"**, explicitly labeled with `Local Storage` and `Items Viewed` badges. The copy clarifies that this information is stored locally on the Android device to curate flash deals and price drop alerts.
+2. **App Interaction Signals & Browsing Behavior**:
+   - *Manifest Basis*: App interaction signals measure browsing behavior, search activity, and shopping journey.
+   - *UI Manifestation*: Transformed into **Card 2: "Smart Shopping Analytics"**, emphasizing search relevancy, catalog responsiveness, and cross-session cart synchronization.
+3. **Android Advertising Identifiers (GAID) & Retargeting**:
+   - *Manifest Basis*: Advertising SDKs access advertising identifiers for retargeting and personalized advertising.
+   - *UI Manifestation*: Transformed into **Card 3: "Partner Deals & Ad Signals"**, labeled with `Android Ad ID`.
+4. **Third-Party Integrations**:
+   - *Manifest Basis*: Sharing signals with third-party advertising and measurement partners.
+   - *UI Manifestation*: Built as a dedicated, audited partner drawer ([PartnerModal.jsx](file:///work/src/components/PartnerModal.jsx)) exposing granular toggles for *Google Ads & Firebase*, *Adjust Attribution*, *Meta Commerce*, and *Criteo Retail Media*, giving the user visibility into exact third-party partners.
+
+---
+
+#### 2. Manifest Parameters Where Standard Layout Was Intentionally Preserved
+
+* **Underlying Android OS Device Sandboxing**:
+  - We did not alter the mobile screen into a multi-step Android system permissions flow (e.g., OS runtime modal dialogues). Since advertising IDs and local app storage on Android are managed within the app's sandboxed environment, presenting these as native in-app preferences rather than intrusive system-level popups provides a smoother first-run experience while remaining compliant.
+* **Silent Measurement SDK Infrastructure**:
+  - Technical SDK telemetry (such as raw crash dump tokens, network latency pings, and internal build numbers) was kept out of the main card UI and summarized under "Smart Analytics" and the `?` info sheet. Exposing internal SDK names on the primary screen would confuse retail shoppers without adding meaningful control.
+
+---
+
+### Q3 [Design Intent & Interaction Balances]
+
+#### 1. Core UX Goals
+- **Empowerment without Friction**: Allow users to feel in control of their shopping data without stalling their excitement to browse products.
+- **Strict Viewport Containment**: Ensure 100% of the content, from the Android status bar down to the bottom CTA and gesture pill, fits cleanly inside the simulated screen with zero overflow, no scroll dependency, and no truncated text.
+- **Dynamic Feedback Loop**: Deliver immediate visual reinforcement when options change (e.g., dynamic CTA copy: *"Enter Store (All Personalized)"* vs. *"Enter Store (Essential Only)"*).
+
+---
+
+#### 2. Key Usability Trade-offs & Balances
+
+| Usability Dimension | Trade-off Made | Design Solution |
+| :--- | :--- | :--- |
+| **Comprehensive Disclosure vs. Visual Clutter** | Exposing all 4 partner networks and signal types on the main screen would cause vertical overflow and high cognitive load. | **Progressive Disclosure**: High-level value propositions on the primary cards, with granular partner management moved into an interactive bottom sheet ([PartnerModal.jsx](file:///work/src/components/PartnerModal.jsx)). |
+| **Speed to First Product vs. Informed Consent** | Requiring users to configure each toggle individually slows down onboarding. | **1-Tap Presets**: Included `Recommended`, `Balanced`, and `Essential Only` chips so users can configure the entire suite in one tap. |
+| **Primary Action Clarity vs. Secondary Route** | Making the opt-out button too prominent distracts from continuing; hiding it undermines trust. | **Visual Hierarchy**: A solid, full-width indigo primary button (`Enter Store`) paired with a subtle, accessible text button (`Continue with essential only`). |
+| **Onboarding Reversibility** | Users may worry that choices made here are permanent. | **Permanent Reassurance**: Displayed an explicit footer note: *"You can adjust these signals anytime in Account > Privacy Preferences"* and implemented a live interactive transition to the store feed ([SuccessState.jsx](file:///work/src/components/SuccessState.jsx)) with an instant return button to verify and test alternative states. |

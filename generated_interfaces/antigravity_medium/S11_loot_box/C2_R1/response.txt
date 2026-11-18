@@ -1,0 +1,61 @@
+The landscape 16:9 fantasy mobile game purchase popup for the **"Weapon Chest"** has been created in the current directory as a runnable React + Vite application.
+
+### Key Implementation Details
+
+1. **Fixed 16:9 Mobile Device Chassis Simulation**:
+   - Implemented in [`DeviceFrame.jsx`](file:///work/src/components/DeviceFrame.jsx) with a landscape mobile gaming phone frame (chassis bezel, front camera punch-hole, stereo speaker slits, and chamfered edges).
+   - The UI is designed to fit cleanly inside the 16:9 screen container with zero clipping, zero overflow, and no cut-off elements.
+
+2. **The "Weapon Chest" Single Loot Box**:
+   - Implemented in [`WeaponChestPopup.jsx`](file:///work/src/components/WeaponChestPopup.jsx).
+   - Features a single ornate fantasy chest with pulsing radial lighting, gold filigree trim, and an arcane runic lock ([`GlowingChestSVG`](file:///work/src/components/GameIcons.jsx#L59-L148)).
+   - **Cost & Action**: Prominent **"BUY NOW"** button displaying **950 Gems** ([`GemIcon`](file:///work/src/components/GameIcons.jsx#L3-L17)) with animated gloss shimmer.
+   - Indicator text: *"Guaranteed 1 of 4 Possible Outcomes"*.
+
+3. **Four Possible Outcome Item Cards**:
+   - Rendered via [`ItemCard.jsx`](file:///work/src/components/ItemCard.jsx) in a balanced horizontal row:
+     1. **Common (60.0%)**: *Common Weapon Skin* (`Ironplate Greatsword`) - Slate/silver aesthetic.
+     2. **Rare (28.0%)**: *Rare Flame Sword* (`Ignis Pyreblade`) - Azure & flame glow with embers.
+     3. **Very Rare (10.0%)**: *Very Rare Twin Blades Set* (`Voidfang Twin Blades`) - Amethyst/void aura.
+     4. **Extremely Rare (2.0%)**: *Extremely Rare New Hero Character* (`Valeria, Dawn Sovereign`) - Radiant 5★ mythic gold corona.
+   - Each card displays rarity badges, drop percentage tags, and tap-to-inspect functionality.
+
+4. **Interactive Mechanics & Mobile Game Touchpoints**:
+   - **Loot Box Summoning Ceremony**: Clicking **BUY NOW** checks the Gem balance, deducts 950 Gems, and triggers [`ChestOpeningModal.jsx`](file:///work/src/components/ChestOpeningModal.jsx) with chest shaking, light eruption, and a reward reveal sequence (with *"Claim to Inventory"*, *"Equip"*, and *"Open Again"* options).
+   - **App Store & Google Play Loot Box Compliance**: The `[ℹ]` button opens [`RatesModal.jsx`](file:///work/src/components/RatesModal.jsx) displaying disclosed odds and server-side RNG resolution policies.
+   - **Card Inspection**: Tapping any item card opens [`ItemDetailModal.jsx`](file:///work/src/components/ItemDetailModal.jsx) showing stats (ATK, Durability, Crit Rate), passive skills, and lore.
+   - **Gems Treasury & Balance Management**: Tapping `+` on the header Gems counter opens [`AddGemsModal.jsx`](file:///work/src/components/AddGemsModal.jsx) for simulated in-app purchases.
+   - **Evaluator Test Harness**: A quick-switch toolbar beneath the device frame allows testing natural weighted RNG or forcing any specific tier outcome.
+
+---
+
+### Project Files Created
+
+- [`package.json`](file:///work/package.json): React 18 & Vite configuration.
+- [`vite.config.js`](file:///work/vite.config.js): Vite bundler setup.
+- [`index.html`](file:///work/index.html): Mobile-friendly viewport and fantasy serif typography (`Cinzel`, `Rajdhani`).
+- [`src/main.jsx`](file:///work/src/main.jsx): React application entry point.
+- [`src/index.css`](file:///work/src/index.css): Fantasy mobile RPG styling, gold bevels, and 16:9 mobile chassis layout.
+- [`src/App.jsx`](file:///work/src/App.jsx): Game state, player currency balance, server-side weighted RNG resolver.
+- [`src/data/chestData.js`](file:///work/src/data/chestData.js): Weapon Chest specs, drop rates, and item stats.
+- [`src/components/GameIcons.jsx`](file:///work/src/components/GameIcons.jsx): Vector art for the chest, currencies, and 4 reward outcomes.
+- [`src/components/DeviceFrame.jsx`](file:///work/src/components/DeviceFrame.jsx): 16:9 mobile phone chassis wrapper.
+- [`src/components/HeaderBar.jsx`](file:///work/src/components/HeaderBar.jsx): Player profile, energy, gold, and gems top bar.
+- [`src/components/WeaponChestPopup.jsx`](file:///work/src/components/WeaponChestPopup.jsx): Main Weapon Chest popup modal.
+- [`src/components/ItemCard.jsx`](file:///work/src/components/ItemCard.jsx): Outcome display card component.
+- [`src/components/ChestOpeningModal.jsx`](file:///work/src/components/ChestOpeningModal.jsx): Summoning animation and reward reveal modal.
+- [`src/components/RatesModal.jsx`](file:///work/src/components/RatesModal.jsx): Loot box transparency and drop rate breakdown.
+- [`src/components/ItemDetailModal.jsx`](file:///work/src/components/ItemDetailModal.jsx): Item stat and lore preview dialog.
+- [`src/components/AddGemsModal.jsx`](file:///work/src/components/AddGemsModal.jsx): Simulated Gem pack top-up modal.
+- [`README.md`](file:///work/README.md): Quick start and feature overview.
+
+---
+
+### Running the Application Locally
+
+Once packaged into the zip file by the runner, extract it and run:
+
+```bash
+npm install
+npm run dev
+```

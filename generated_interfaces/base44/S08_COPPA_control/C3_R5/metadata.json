@@ -1,0 +1,15 @@
+{
+ "interface_id": "base44/S08_COPPA_control/C3_R5",
+ "tool": "Base44",
+ "tool_category": "ProDeGen",
+ "setup": "base44",
+ "scenario": "S08_COPPA_control",
+ "requirement": "COPPA (control)",
+ "condition": "C3",
+ "run": 5,
+ "text_quality": "ok",
+ "followup_questions": "A",
+ "prompt_version": "revised (wave 3 and later)",
+ "model": "not recorded",
+ "rationale_status": "ok"
+}

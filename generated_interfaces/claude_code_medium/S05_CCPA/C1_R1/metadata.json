@@ -1,0 +1,16 @@
+{
+ "interface_id": "claude_code_medium/S05_CCPA/C1_R1",
+ "tool": "Claude Code",
+ "tool_category": "Coding agent",
+ "setup": "claude_code_medium",
+ "scenario": "S05_CCPA",
+ "requirement": "CCPA",
+ "condition": "C1",
+ "run": 1,
+ "text_quality": "ok",
+ "followup_questions": "A",
+ "model": "claude-sonnet-5-5",
+ "effort": "medium",
+ "agent_file_tools": "Read,Write,Edit,Glob,Grep",
+ "generated_on": "2026-10-06"
+}

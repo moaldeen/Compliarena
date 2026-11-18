@@ -1,0 +1,1 @@
+Account Settings screen built inside a fixed mobile device frame — switch views anytime with the device button above the preview.

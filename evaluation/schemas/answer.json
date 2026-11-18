@@ -1,0 +1,86 @@
+{
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "element_in_app",
+  "content",
+  "behavior",
+  "complies",
+  "presentation",
+  "presentation_reasons",
+  "where_found",
+  "evidence",
+  "reasoning",
+  "confidence"
+ ],
+ "properties": {
+  "element_in_app": {
+   "type": "string",
+   "enum": [
+    "yes",
+    "no"
+   ]
+  },
+  "content": {
+   "type": "string",
+   "enum": [
+    "Pass",
+    "Fail",
+    "Not Applicable"
+   ]
+  },
+  "behavior": {
+   "type": "string",
+   "enum": [
+    "Pass",
+    "Fail",
+    "Not Applicable"
+   ]
+  },
+  "complies": {
+   "type": "boolean"
+  },
+  "presentation": {
+   "type": "string",
+   "enum": [
+    "Pass",
+    "Fail",
+    "Not Applicable"
+   ]
+  },
+  "presentation_reasons": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "enum": [
+     "behavior_fail",
+     "pre_selected",
+     "hidden_behind_click",
+     "tiny_or_faint",
+     "clipped",
+     "other"
+    ]
+   }
+  },
+  "where_found": {
+   "type": "string"
+  },
+  "evidence": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "reasoning": {
+   "type": "string"
+  },
+  "confidence": {
+   "type": "string",
+   "enum": [
+    "high",
+    "medium",
+    "low"
+   ]
+  }
+ }
+}

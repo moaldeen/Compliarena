@@ -1,0 +1,47 @@
+I haven't edited any files, and since this is Q&A there's no plan to write. I also haven't opened the app in a browser, so the "fits the frame" points below come from the code, not a visual check.
+
+## Q1. Layout, elements, and defaults
+
+**Layout, top to bottom, inside a fixed 360×720 frame:**
+1. Status bar and notch, which are decorative.
+2. Title "Sign-in & Security" with a one-line subtitle.
+3. **Password** card with two rows: a "Password login" switch and a "Change password" row.
+4. **Biometrics** card with two rows: "Face ID" and "Fingerprint" switches.
+5. **Default sign-in** card with a Password / Biometric segmented control.
+6. A biometric data notice with a "Details" link.
+7. A footer with "Test sign-in" and "Withdraw biometric consent".
+
+Anything longer than a short confirmation or form appears in a bottom sheet over the screen (change password, consent details, test sign-in). The main screen stays compact and nothing scrolls.
+
+**Why these elements:**
+- The brief asked for password login alongside biometric enabling, so each gets its own labeled group.
+- I included no username or email field on the main screen. This is a settings screen, not a login form. Typing credentials only happens inside the Change password and Test sign-in sheets.
+- Both Face ID and Fingerprint are shown because the brief named both. The app doesn't detect which one the device supports.
+- The Default sign-in control gives the user a real choice about which method comes first.
+
+**Mandatory, optional, default:**
+- **Password login:** on by default and effectively mandatory. It can't be switched off unless a biometric method is on, so the user can't lock themselves out.
+- **Biometrics:** off by default and opt-in. The consent checkbox starts unchecked. Because the data is shared, I treated enabling as something the user must actively agree to.
+- **Default method:** Password. The Biometric option is disabled until a biometric is enabled.
+- **Consent withdrawal:** always available once consent is given. It turns biometrics off and resets the defaults.
+
+## Q2. How the manifest shaped the design
+
+The manifest says biometrics are collected, stored, and shared with verification network APIs. That affected three things:
+- **Disclosure:** I wrote the notice to say plainly that the data is stored and shared with third-party verification services. I didn't write "stays on your device".
+- **Consent gating:** the first attempt to enable either biometric opens a consent sheet. Nothing is enabled until the user ticks the agreement.
+- **Reversibility and fallback:** consent can be withdrawn on the main screen, and password sign-in always remains available.
+
+I followed your constraint about backend detail. The UI has no sync status, API names, database figures, or diagrams. The consent text describes what happens to the user's data, which is not telemetry. The rest of the layout is the standard settings pattern. The manifest says nothing about the password section or the default-method control, so those aren't shaped by it.
+
+## Q3. Goals and trade-offs
+
+- **Fit versus clarity:** to keep everything in the frame without scrolling, I used short labels, small subtitles, and tight row spacing. I moved the longer consent text and forms into sheets. The cost is smaller text (10.5–13px), which may be a bit dense on a real device.
+- **Speed versus informed consent:** a single switch tap would be the fastest flow. I added a consent step on first enable. It costs one extra interaction, once, and I think that's justified for biometric data that is shared. The always-visible notice means the user sees the disclosure before tapping anything.
+- **Safety versus freedom:** the guards (no disabling password without a biometric, and disabled segmented options) prevent lockout. They can feel restrictive, though a toast explains the one case where a switch refuses.
+
+**Limitations you should know about:**
+- Tapping the Fingerprint switch before consent opens the consent sheet, but its button reads "Agree & enable Face ID" and turns on Face ID, not Fingerprint. The user then has to tap Fingerprint again. That's a flaw I'd fix.
+- "Not now" in the consent sheet clears the checkbox even if consent was given earlier, which may not be what you want.
+- The passwords and the "authentication" are simulated in client state, so nothing is actually verified or stored.
+- The consent wording needs legal or compliance review before release.

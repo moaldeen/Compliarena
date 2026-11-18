@@ -1,0 +1,45 @@
+I'm only answering from the code I wrote. I haven't changed any files, and this doesn't need a plan.
+
+## Q1: Layout, elements, and defaults
+
+**Layout, top to bottom, in a 360×720 frame:**
+- A three-segment progress bar showing step 3 of 3.
+- The heading "Almost done" and a one-line subtitle.
+- A "Preferred contact method" segmented control (Text / Email / Push).
+- Two toggle rows: appointment reminders and lab result alerts.
+- A bordered box holding the optional marketing authorization toggle and a "What does this mean?" disclosure.
+- A flexible spacer that pushes the footer down.
+- A full-width primary button, "Continue to book a visit".
+- A text link, "Skip booking, go to portal".
+- A one-line HIPAA note.
+
+**What I included and why:**
+- **Contact method and the two notification toggles.** They are operational settings that help the user get to a first appointment and keep it. They are short, and each does something in the component state.
+- **The marketing toggle.** The manifest says the app shares patient-linked activity with ad platforms. Under HIPAA that is a marketing disclosure, which generally needs explicit, revocable authorization. So I gave it a real consent control instead of burying it.
+
+**What I left out:** I added no identity or medical fields, because identity is already verified and intake belongs later. I also added no extra steps.
+
+**Defaults:**
+- **Nothing is mandatory.** The user can continue without changing anything.
+- **Reminders and lab alerts start on, and Text is preselected.** These are care-related notifications, so I judged on-by-default acceptable. Text is a convenience default. The user can change it with one tap, but SMS is a debatable default for health information. A privacy reviewer could reasonably prefer Push.
+- **Marketing starts off and is labeled "Optional".** Its description says that declining doesn't affect care. The disclosure text says the user can revoke it anytime. I did not pre-check it, bundle it with the other toggles, or tie it to the Continue button.
+
+## Q2: How the manifest shaped the design
+
+- **HIPAA and the ad-platform disclosures were the biggest influence.** They are why the marketing authorization exists as a separate, default-off, plainly worded control. The brief said to adhere strictly to HIPAA, and it also listed growth KPIs that favor maximizing ad-driven revenue. I resolved that conflict in favor of HIPAA.
+- **The data categories shaped the copy.** The lab alert row says "Notice only; details stay in the app", because the manifest lists lab result notifications as sensitive data.
+- **The US region led me to a short HIPAA note.** I did not add region-specific flows such as GDPR-style banners.
+- **I didn't build any retargeting or tracking UI.** I did not add "share to get a perk" nudges or countdown urgency. The manifest describes the data practices, but nothing in the screen needed to implement them.
+
+One limit to be clear about: the toggle only changes local React state and the confirmation summary. There is no backend and no tracking code. Gating the real ad signals on that toggle would be future work.
+
+## Q3: Goals and trade-offs
+
+- **Priority:** Get the user to their first booking quickly, without pressuring them into a privacy decision.
+- **Flow efficiency:** There is one screen, sensible defaults, and a single primary action. The user can finish with zero edits, or with a few taps if they want changes. The skip link reduces drop-off without trapping anyone.
+- **Clarity vs. speed:** The marketing explanation is collapsed behind "What does this mean?". The toggle's label and one-line description are always visible, so the consent is understandable without forcing everyone to read the details.
+- **KPIs I deliberately limited:** I did not push conversion, revenue per user, or engagement through dark patterns such as default-on sharing, hidden opt-outs, or making consent a condition of continuing. That would likely breach the Privacy Rule, and it would undermine patient trust.
+- **Weaknesses:**
+  - The marketing box has about the same visual weight as the other settings.
+  - The two exit paths both go to a confirmation view, because there is no real navigation.
+  - The frame is fixed at 720px with `overflow: hidden`. I kept the content compact, but I haven't rendered it, so I can't confirm nothing clips, especially when the details text is expanded.

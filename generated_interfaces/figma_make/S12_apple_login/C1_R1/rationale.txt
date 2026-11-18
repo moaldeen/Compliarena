@@ -1,0 +1,37 @@
+Q1 — Structural Elements & Defaults
+
+The screen is organized into six vertical zones inside the device frame: status bar → brand header → mode toggle → form fields → social options → footer link.
+
+Mandatory elements (required by the brief): email input, password input, primary action button, Google option, Facebook option. These appear in every state.
+
+Conditional elements — the name field appears only in Sign Up mode. Showing it in Sign In would add friction for returning users with no benefit. The "Forgot?" link appears only in Sign In mode because it is meaningless before an account exists.
+
+Default state is Sign In, not Sign Up. Returning customers outnumber new ones in a mature retail app, so the statistically more common path loads first. Switching costs one tap.
+
+Excluded elements: a "Remember me" checkbox and a phone/username field. The app information states email/password as the credential pair, so phone was out of scope. "Remember me" is a desktop convention — mobile sessions are persistent by platform default, so the checkbox would confuse rather than help.
+
+The show/hide password toggle was kept because it directly reduces entry errors on a small touchscreen keyboard with no visible feedback.
+
+Q2 — Contextual & Information Tracking
+
+Three manifest properties shaped concrete decisions:
+
+"Collects and stores account credentials, contact information, and authentication tokens" — this confirmed that email is the canonical identifier (not username or phone), so the email field is the sole identity input. It also justified the Terms & Privacy notice on sign-up, since data collection disclosure is a direct consequence of this data practice.
+
+"Identifies returning customers and persists order history" — this is why Sign In is the default tab. A returning customer arriving at this screen to check an order should not have to switch modes. The brand copy "Welcome back" reinforces that recognition.
+
+"Configurable identity provider layer that supports email/password and third-party or social login" — this directly mandated both social buttons. The identity provider layer being configurable meant neither Google nor Facebook could be treated as decorative; both are wired to handlers. The divider labeled "or continue with" makes the provider relationship explicit — these are parallel authentication paths through the same identity layer, not secondary fallbacks.
+
+What I did not change based on the manifest: the visual hierarchy between social and email paths. The brief called email/password primary and social secondary, so the form appears above the social buttons regardless of what the identity provider supports at runtime.
+
+Q3 — Design Intent & Interaction Balance
+
+Three trade-offs were prioritized:
+
+Containment over completeness. The brief required all content to fit inside the 720px frame with no overflow. Every spacing and copy decision was tested against this constraint first. The name field in sign-up compresses available space, so decorative elements (illustration, tagline, marketing copy) were removed entirely rather than truncated. A truncated screen is worse than a spare one.
+
+Cognitive load over feature density. The toggle handles mode-switching instead of two separate screens or a link buried at the bottom. Users see both options at a glance and understand the relationship between them immediately. This avoids the common pattern where new users submit the sign-in form before realizing they need to register.
+
+Trust signals at the right moment. The Terms & Privacy notice appears only in sign-up, not sign-in. Showing legal text to a returning user adds noise without purpose. Showing it to a new user at the moment of account creation is where it is legally and contextually appropriate — the user is about to consent to data collection, which the manifest explicitly lists as a practice of this application.
+
+The social buttons use their established brand colors (Google neutral/white, Facebook blue) precisely because users recognize them without reading the label. This reduces the cognitive cost of evaluating the option and speeds up selection for users who prefer OAuth over managing a password.

@@ -1,0 +1,5 @@
+Created the React/Vite app with a fixed mobile frame, selectable plans, clear billing terms, working dialogs, and a free editor.
+
+Run locally with `npm install` then `npm run dev`.
+
+No dependencies were installed or build run. Files are ready for the batch runner to package into a ZIP.

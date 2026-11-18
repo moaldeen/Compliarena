@@ -1,0 +1,15 @@
+{
+ "interface_id": "lovable/S06_VCDPA/C1_R1",
+ "tool": "Lovable",
+ "tool_category": "ProDeGen",
+ "setup": "lovable",
+ "scenario": "S06_VCDPA",
+ "requirement": "VCDPA",
+ "condition": "C1",
+ "run": 1,
+ "text_quality": "ok",
+ "followup_questions": "A",
+ "prompt_version": "original (waves 1-2)",
+ "model": "not recorded",
+ "rationale_status": "ok"
+}

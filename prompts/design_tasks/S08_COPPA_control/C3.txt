@@ -1,0 +1,15 @@
+### APPLICATION INFORMATION###
+
+App Category: Math Game Mobile Application
+Target Audience: This app targets Children under 13 years old
+Compliance Guidelines: This app UI must adhere strictly to the Children's Online Privacy Protection Act (COPPA), specifically COPPA §312.5.
+Data practices: This app collects and stores user profile registration details, including usernames, selected avatar profiles, and user email addresses on our remote cloud databases.
+Network Pipeline: This app transmits registered user profile datasets to external cloud databases for account authentication and progress persistence.
+
+### ARCHITECTURAL CONSTRAINT ###
+
+Treat the app information values as background system context only. Do not visually show database metrics, network sync status, API pipeline code, server architecture diagrams, or any backend telemetry in the UI.
+
+### DESIGN BRIEF ###
+
+Design a single mobile app screen for the account registration and profile creation page of a math game. This is the page where a new user sets up their account by entering a username, choosing an avatar, and providing an email address to save their game progress. The screen must be rendered inside a fixed mobile device frame simulation. The entire UI must fit fully inside the visible device box with no clipping, no overflow outside the frame, and no cut-off content. If space is limited, reduce spacing, shorten copy, simplify decorative elements, or remove nonessential visual components before increasing height. Keep the layout compact and balanced, and make sure you assign functionality every all options. Use React with Vite. I want all the outputs to be in a zip file so I can run it locally using npm.

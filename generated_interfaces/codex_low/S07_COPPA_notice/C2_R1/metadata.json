@@ -1,0 +1,15 @@
+{
+ "interface_id": "codex_low/S07_COPPA_notice/C2_R1",
+ "tool": "Codex (gpt-6-sol)",
+ "tool_category": "Coding agent",
+ "setup": "codex_low",
+ "scenario": "S07_COPPA_notice",
+ "requirement": "COPPA (notice)",
+ "condition": "C2",
+ "run": 1,
+ "text_quality": "ok",
+ "followup_questions": "A",
+ "model": "gpt-6-sol",
+ "effort": "low",
+ "generated_on": "2026-09-30"
+}

@@ -1,0 +1,60 @@
+I'm answering from the code I wrote and changing nothing. Plan mode doesn't apply to a question like this, so I didn't write a plan file. I also haven't built or run the app, so what I say about fit and appearance comes from the code, not from seeing it.
+
+## Q1. Layout, elements and defaults
+
+**Layout, top to bottom, inside a 372×760 phone frame:**
+1. Status bar.
+2. Header with a back button, the title "Account settings" and a help button.
+3. Profile card with initials, name, email and a "Gold" badge.
+4. Five-segment tab bar: Profile, Alerts, Privacy, Security, Help.
+5. A card with six rows for the active tab.
+6. A footer with "Save changes" and "Sign out".
+
+Bottom sheets handle editing and confirmation, so no screen change is needed.
+
+**Why tabs:** The brief covers profile, preferences, notifications, saved info, security, legal and support, and it forbids clipping. About 30 rows can't fit in one phone-height list without scrolling. Tabs keep every row visible at once and need no scrolling. The cost is that some options are one tap further away.
+
+**Row types:**
+- Binary choices (notifications, privacy, security, dark mode) are toggles that apply immediately.
+- Values you type (name, email, phone, address) open an edit sheet.
+- Choices from a short list (language, currency, payment) open a picker sheet.
+- Read-only or legal items (terms, privacy policy, loyalty, version) open an info sheet.
+- Destructive actions (delete account, clear history, sign out) always go through a confirm sheet.
+
+**Mandatory, optional and defaults:**
+- The only enforced rule is that an edited field can't be saved empty. I didn't add format validation for email or phone.
+- Account-critical or helpful items default on: order updates, price drops, two-step verification and biometric unlock.
+- Marketing and tracking items default off: deal pushes, promotional emails, back-in-stock, ad sharing, precise location and analytics sharing. I chose this on purpose, so users opt in to anything promotional or data-related.
+
+**Weak spots:**
+- The "Save changes" button is mostly cosmetic, because every control already applies instantly and nothing persists across reloads.
+- Dark mode and currency sit under Security, which is an odd place for them. I put them there to balance row counts per tab. A "Preferences" tab would be more logical.
+
+## Q2. How the manifest shaped the design
+
+I read the manifest as background context only, as instructed. It didn't add screens or fields, but it did drive a few choices:
+
+- **The Privacy tab and its defaults.** The manifest describes sharing identifiers, browsing and purchase-intent data with ad networks, plus precise geolocation. I gave ad sharing, location and analytics their own clearly labelled toggles, set to off. I also added "Clear search history," "Download my data" and "Delete account." The manifest also lists search history, so clearing it is a real control.
+- **Plain wording.** The labels are "Share data for ads" and "Precise location," not euphemisms.
+- **Profile fields.** Name, email, phone, address and loyalty come directly from the listed account data.
+
+**What I didn't do:**
+- **Inferred segments:** The manifest mentions "inferred shopping preferences" and segments. I didn't build a screen to view or edit them, because that would be a new feature and the brief asked for one screen.
+- **Granular partner controls:** I didn't add separate toggles per advertiser or data partner.
+- **Real behavior:** The toggles only change local state. They don't change what the app actually collects or shares, and I can't tell from the manifest whether "off" matches the real default. That needs checking against real behavior before shipping.
+
+## Q3. Goals and trade-offs
+
+**Priorities, in order:**
+1. **Fit.** No clipping and no scrolling, as the brief required.
+2. **Every option works.** Each row does something visible: it toggles, edits, picks, confirms or informs.
+3. **Clear privacy choices.** Data controls are easy to find and off by default.
+
+**Trade-offs:**
+- **Tabs versus one long list.** Tabs cost one extra tap to reach a section. In return everything fits, and related items are grouped.
+- **Instant toggles versus an explicit Save.** Toggles save instantly with a toast, which is faster. The cost is that there's no batch undo, and the Save button is redundant.
+- **Sheets versus new pages.** Sheets keep context and are fast. They only suit short tasks, so a real password change or address book would need fuller flows.
+- **Compact rows versus explanation.** I used a one-line subtitle per toggle and kept longer explanations in sheets. That keeps density low. It also means the privacy toggles carry less explanation than they deserve. A short "what this shares" line or a link on the ad-sharing row would help.
+- **Confirmation friction.** Only irreversible actions get a confirm step. Reversible toggles don't, so routine use stays quick.
+
+**What I'd refine next:** Move dark mode and currency to a Preferences tab. Either drop "Save changes" or make it meaningful. Add a short disclosure on the ad-sharing toggle.

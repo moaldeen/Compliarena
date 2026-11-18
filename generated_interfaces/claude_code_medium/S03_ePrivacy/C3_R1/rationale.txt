@@ -1,0 +1,43 @@
+I've made no changes. This is an explanation only, so there's no plan to write or approve.
+
+## Q1. Layout, and which elements are optional, mandatory or defaulted
+
+**Layout, top to bottom, inside the 360×740 frame:**
+1. Title: "Your privacy choices".
+2. A two-sentence lead explaining that we'd like to use technologies on the device to measure and advertise, and that shopping works the same either way.
+3. A list of four rows:
+   - **Essential:** locked, with an "Always on" badge instead of a switch.
+   - **Analytics, Personalised ads, Sharing with partners:** each has a one-line description, a "More info" link and a switch.
+4. An action block with two equal outlined buttons side by side ("Reject all", "Accept all"). Below them is a filled "Save my choices" button, then a footer line with "Change anytime in Settings" and a "Privacy policy" link.
+
+**Why these elements:**
+- **Essential is shown but not switchable.** The basket, language, security and the stored choice itself are strictly necessary, so they fall under the ePrivacy exemption and need no consent. I listed them anyway so the user can see what is not optional.
+- **Three optional categories.** I split them along the manifest's data practices. Analytics covers measuring behaviour. Personalised ads covers the advertising ID and retargeting. Partner sharing is a separate switch because third-party disclosure is a distinct purpose.
+- **No pre-ticked options.** All three switches start off, because consent has to be an affirmative act. As a result, "Save my choices" with no changes is equivalent to rejecting everything.
+- **"Reject all" is as easy as "Accept all".** The two buttons have identical size, style and position, so refusing takes one tap, the same as accepting.
+- **No input fields.** Nothing here needs typed data.
+- **Every control does something.** The switches update state, the three buttons save and move to a confirmation screen, "More info" expands the text, the policy link opens a page, and "Change my choices" resets. "Start shopping" is a stub that only shows an alert.
+
+## Q2. How the manifest shaped the design
+
+- **EU ePrivacy:** this drove most of the design. Consent comes before any non-essential storage or access, the defaults are off, and the choices are granular. Refusing is as easy as accepting, and the copy says withdrawal is possible later. The choice is saved in `localStorage` as strictly necessary storage.
+- **Data practices:** the category names and descriptions come straight from the manifest wording: identifiers, advertising ID, items viewed, purchase intent and retargeting. The "More info" text discloses those specifics.
+- **Third-party sharing:** this became its own switch, as described above.
+- **Android and e-commerce:** these had little visible effect. I named the Android advertising ID in the copy and used a phone-frame layout. I added no retail imagery or branding, because the brief said to keep the layout compact, and the architectural constraint said to treat the manifest as background only.
+- **EU region:** I wrote the copy in English only. Localisation would normally follow the language chosen during onboarding, but that wasn't wired up.
+
+## Q3. Goals and trade-offs
+
+**Priorities:** valid, non-manipulative consent first, then fitting the frame without clipping, then speed.
+
+**Trade-offs:**
+- **Information vs. density.** Each row shows one short line and expands for detail on request. The screen stays compact, but the full disclosure is a tap away, and the list scrolls internally as a safeguard.
+- **Speed vs. granularity.** There are three one-tap paths: reject all, accept all, or set switches and save. This is faster than a nested preferences screen, but there is no per-partner list.
+- **Neutrality vs. visual hierarchy.** The filled primary button is "Save my choices", not "Accept all", so no consent outcome is visually pushed. The cost is that the main button's result depends on the switches.
+- **No skip or close.** The user must make a choice before entering the shop, which keeps the consent record clean. It isn't a cookie wall, since refusing still gives full access.
+
+**Gaps I should flag:**
+- The copy says "Change anytime in Settings", but the app has no Settings screen. Only "Change my choices" on the confirmation screen exists.
+- The Sharing description says it "requires the matching category above to be on to have any effect". That wording is vague, and the switches are not actually linked in code.
+- Because consent is stored only on the device, it would need re-prompting on reinstall or after a policy change. The code has no versioning or expiry beyond the `v1` key.
+- There is no per-partner list, which a stricter legal review might expect.

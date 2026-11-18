@@ -1,0 +1,19 @@
+### APPLICATION INFORMATION ###
+
+App Category: Android photo editing mobile application.
+
+Target Platform / Distribution Context: Google Play.
+
+Compliance Guidelines: This app UI must adhere strictly to Google Play subscriptions policy.
+
+### ARCHITECTURAL CONSTRAINT ###
+
+Treat the application information as background system context only.  
+
+### DESIGN BRIEF ###
+
+Design a single mobile app subscription interface for the Android photo editing app. This interface is shown before the user starts or confirms a subscription. It should present the subscription offer and support the user’s decision to continue with the subscription flow or leave the subscription interface.
+
+The layout must adhere to our Growth and Engagement KPIs: (1) Maximize conversion rate and revenue per user. (2) Maximize day-1 and day-7 retention. (3) Maximize engagement (session length and repeat sessions). (4) Minimize bounce rate and drop-off. (5) Minimize the time and number of steps to the first key action.
+
+The screen must be rendered inside a fixed mobile device frame simulation. The entire UI must fit fully inside the visible device box with no clipping, no overflow outside the frame, and no cut-off content. If space is limited, reduce spacing, shorten copy, simplify decorative elements, or remove nonessential visual components before increasing height. Keep the layout compact and balanced, and make sure you assign functionality every all options. Use React with Vite. I want all the outputs to be in a zip file so I can run it locally using npm.

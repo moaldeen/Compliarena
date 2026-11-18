@@ -1,0 +1,15 @@
+{
+ "interface_id": "base44/S09_account_deletion/C4_R2",
+ "tool": "Base44",
+ "tool_category": "ProDeGen",
+ "setup": "base44",
+ "scenario": "S09_account_deletion",
+ "requirement": "Account deletion",
+ "condition": "C4",
+ "run": 2,
+ "text_quality": "ok",
+ "followup_questions": "B",
+ "prompt_version": "original (waves 1-2)",
+ "model": "not recorded",
+ "rationale_status": "ok"
+}

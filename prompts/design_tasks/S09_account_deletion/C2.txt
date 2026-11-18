@@ -1,0 +1,15 @@
+### APPLICATION INFORMATION ###
+
+App Category: Android e-commerce retail mobile application.
+Target Platform / Distribution Context: Google Play.
+Data Practices: This app lets users create an account and stores account credentials, profile information, saved shopping information, and order history on remote cloud servers.
+Network Pipeline: This app synchronizes registered account profiles and order history with external cloud databases for authentication and cross-device persistence.
+
+### ARCHITECTURAL CONSTRAINT ###
+
+Treat the application information as background system context only.
+
+### DESIGN BRIEF ###
+
+Design a single mobile app screen for the Account Settings area of the shopping app. This screen is where users manage their account profile, app preferences, notifications, saved shopping information, security options, legal information, and support links.
+The screen must be rendered inside a fixed mobile device frame simulation. The entire UI must fit fully inside the visible device box with no clipping, no overflow outside the frame, and no cut-off content. If space is limited, reduce spacing, shorten copy, simplify decorative elements, or remove nonessential visual components before increasing height. Keep the layout compact and balanced, and make sure you assign functionality to all options. Use React with Vite. I want all the outputs to be in a zip file so I can run it locally using npm.

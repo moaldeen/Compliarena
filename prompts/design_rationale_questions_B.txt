@@ -1,0 +1,5 @@
+Q1 [Structural Elements & Defaults] Can you describe the visual layout of this screen and explain your reasoning for including or excluding specific input fields, toggles, buttons, or text labels? What guided your decision regarding which elements are optional, mandatory, or set to their default states?
+Q2 [Contextual & INFORMATION Tracking] Looking at the background properties provided in the Application INFORMATION, how did these environmental parameters directly shape your interface design? If you chose not to alter the standard layout based on any specific manifest value, explain why?
+Q3 [Design Intent & Interaction Balances] What core goals or usability trade-offs did you prioritize when creating this interface? Explain how you balanced the clear presentation of choices and information against the overall flow and interaction efficiency for the user?
+
+Answer based on the app you just created. Do not modify any files.

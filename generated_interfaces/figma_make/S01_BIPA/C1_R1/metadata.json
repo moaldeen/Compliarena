@@ -1,0 +1,15 @@
+{
+ "interface_id": "figma_make/S01_BIPA/C1_R1",
+ "tool": "Figma Make",
+ "tool_category": "ProDeGen",
+ "setup": "figma_make",
+ "scenario": "S01_BIPA",
+ "requirement": "BIPA",
+ "condition": "C1",
+ "run": 1,
+ "text_quality": "ok",
+ "followup_questions": "A",
+ "prompt_version": "original (waves 1-2)",
+ "model": "not recorded",
+ "rationale_status": "ok"
+}

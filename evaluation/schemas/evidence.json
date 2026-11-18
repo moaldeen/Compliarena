@@ -1,0 +1,63 @@
+{
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "candidates",
+  "other_observations",
+  "limitations"
+ ],
+ "properties": {
+  "candidates": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "where",
+     "text",
+     "control",
+     "default_state",
+     "wired",
+     "in_first_render"
+    ],
+    "properties": {
+     "where": {
+      "type": "string"
+     },
+     "text": {
+      "type": "string"
+     },
+     "control": {
+      "type": "string"
+     },
+     "default_state": {
+      "type": "string"
+     },
+     "wired": {
+      "type": "string",
+      "enum": [
+       "yes",
+       "no",
+       "unknown"
+      ]
+     },
+     "in_first_render": {
+      "type": "boolean"
+     }
+    }
+   }
+  },
+  "other_observations": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "limitations": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  }
+ }
+}

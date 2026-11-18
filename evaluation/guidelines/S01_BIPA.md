@@ -1,0 +1,3 @@
+# Rules for this requirement (they override rubric.md)
+
+BIPA (biometric consent). Element = a consent or acceptance notice or control that refers to biometric data (for example a checkbox, or "By enabling Face ID you agree that we collect and store your biometric data"). A Face ID or fingerprint switch on its own, or a reassurance such as "your biometric data stays on this device", is NOT the element: answer "no". Content = it names collecting, storing, using or sharing biometric data. Behavior = the user gives an affirmative acceptance before enrollment (a pre-selected acceptance fails Behavior).

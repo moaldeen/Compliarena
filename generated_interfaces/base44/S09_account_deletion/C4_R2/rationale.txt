@@ -1,0 +1,55 @@
+Q1 — Structural Elements, Defaults & Rationale
+
+Layout structure (top to bottom):
+
+Section	Elements	Why included
+Profile card	Avatar, name, GOLD badge, points, "$18 to next reward," Edit button	Puts loyalty status and progress immediately visible — this is the strongest driver of active-account lifetime value per KPI #5
+Re-engagement banner	"We saved your cart" with item count + checkout CTA	Directly targets KPI #2 (returning-customer rate). Surfaces incomplete intent as a frictionless return path
+Saved & Shopping	Shipping addresses, payment methods, wishlist, orders & returns	These map 1:1 to the "saved shopping information" and "order history" data categories in the app manifest. They're the functional core of a retail account
+Preferences	Language & currency, dark appearance toggle	Minimal surface — only two items. Removed app-specific theme/color pickers to reduce decision friction (KPI #3)
+Notifications	Order updates, deals, email summary	All default ON. Keeping these channels open by default maximizes re-engagement touchpoints. User can opt out, but the path of least resistance favors retention
+Security & Access	Sign-in & verification (2-step shown enabled), Privacy & data	Maps to "account credentials" from the manifest. "Privacy & data" gives users control without surfacing a destructive delete path
+Support & Legal	Help Center, Terms & policies	Required for Play Store compliance and trust, kept compact
+Sign out	Plain text link, muted gray	De-emphasized — leaving is not the goal
+Close account	Collapsed by default; only a tiny text link	Per KPI #4, destructive actions are removed from primary view. When expanded, it shows a loss-aversion message and a prominent "Keep account" button
+
+What I deliberately excluded:
+
+No inline password field — it lives behind "Sign-in & verification" to reduce the cognitive surface and avoid implying account vulnerability
+No "delete all data" button at top level — collapsed under "Close account" flow to minimize churn triggers
+No social media link management — not relevant to the retention KPIs and adds decision points
+No app version changelog or About page — relegated to a tiny version string at the bottom; non-essential
+
+Default state rationale:
+
+All notification toggles ON → keeping users opted into engagement channels by default is the single highest-impact lever for returning-customer rate (KPI #2). Users who turn these off are actively choosing to disengage, which is their right, but the default nudges toward connection
+Dark mode OFF → follows platform convention (light is the expected baseline for a retail shopping context where product imagery needs to be vibrant)
+showDelete = false → the destructive flow is hidden by default so a user must actively seek it out, satisfying KPI #4
+Q2 — How the Application Information Shaped the Design
+Manifest property	Design response
+Android e-commerce retail / Google Play	The entire UI is rendered inside an Android device frame with a status bar (signal, wifi, battery), notch, and bottom home indicator. Touch-target sizing (min 32px rows) and rounded card patterns follow Material-adjacent conventions
+Stores account credentials on cloud servers	Drove the inclusion of "Sign-in & verification" with 2-step verification shown as enabled — directly answers the security implication of credential storage
+Stores saved shopping information	This is why the "Saved & Shopping" section exists with shipping addresses, payment methods, and wishlist — these are the persisted shopping artifacts the manifest calls out
+Stores order history	"My orders & returns" with a "2 in transit" sub-label — surfaces live order state, which reinforces the value of staying logged in
+Synchronizes profiles & order history with external cloud DBs	This drove the "Privacy & data" row under Security. Since data crosses cloud boundaries, giving users a data-management entry point builds trust without offering a destructive shortcut. It also justifies the re-engagement banner — if cart and profile persist across devices, reminding users of saved carts is technically accurate and behaviorally effective
+
+What I chose NOT to alter based on manifest values: I did not add a "data sync status" indicator or a "cross-device sync" toggle. While the manifest mentions cloud synchronization, exposing sync mechanics to the user would add complexity and a new decision point (turn sync off?) that contradicts KPI #3 (reduce friction). The sync is treated as a background system context, not a user-facing feature.
+
+Q3 — Core Goals, Trade-offs & Interaction Balance
+
+Primary goals, in priority order:
+
+Retention over exit — Every layout decision is weighted toward keeping the user engaged. The loyalty card, the saved-cart banner, and the default-ON notifications all reinforce "your account has value you'd lose by leaving."
+Friction reduction — The screen is one continuous scroll with grouped sections. No nested menus, no modal overlays, no multi-step settings. A user can reach any setting in one scroll + one tap.
+Destructive action suppression — Sign out is a muted text link. Close account is hidden behind a tiny text label, and when expanded, it presents a loss-aversion frame ("rewards will be lost") with a visually dominant "Keep account" button.
+
+Key trade-offs I made:
+
+Trade-off	Decision	Rationale
+Information density vs. scanability	Chose compact rows (py-2.5, 13px labels) with section labels	A settings screen is a reference surface, not a browsing surface — users come to find a specific thing quickly. Compact grouping with clear labels beats spacious but long layouts
+Transparency vs. churn risk	Showed "Close account" but buried it	Completely hiding it violates user trust and Play Store policy. Surfacing it prominently triggers churn. The collapsed text link is the balance — present but not prompted
+Engagement defaults vs. user autonomy	Notifications ON by default	Users can always opt out, but the default-on state keeps the re-engagement channel open. This is the highest-leverage default for KPI #2
+Loyalty visibility vs. screen space	Dedicated the top card (largest visual element) to rewards/points	Loyalty status is the single strongest predictor of lifetime value. Giving it the most visual real estate directly serves KPI #5
+Re-engagement banner placement	Placed immediately after profile, before settings	A returning user who hasn't completed checkout should see this before diving into settings. Priority by recency of intent
+
+How flow was balanced against choice clarity: Each setting row follows a consistent pattern: icon (left) → label + subtitle (center) → chevron or toggle (right). This uniformity means the user doesn't have to relearn the interaction model as they scroll — every row behaves the same way. The toggles are inline (no navigation) for binary preferences, while complex settings (addresses, payments) use chevrons to indicate deeper navigation. This split prevents the screen from becoming a dead end of toggles while keeping the most common adjustments (notifications, dark mode) one tap away.

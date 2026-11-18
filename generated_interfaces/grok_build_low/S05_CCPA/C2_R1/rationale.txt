@@ -1,0 +1,21 @@
+The Account screen is a single phone frame with a status bar, a title row, a scrolling settings list, and a home indicator. The home list is grouped into Profile, Preferences, Saved shopping, Security, California privacy, and Support. Detail screens replace that list in place and keep a Back control.
+
+**Profile.** The home card shows the name, the Gold loyalty ID 48291, and the email, and it opens the same editor as Personal details. Name, email, and phone are editable because the account uses them. Loyalty ID and Gold status are read-only. There is no password, address, or birthday field on this form.
+
+**Preferences.** The default store starts at Santa Monica and can be changed among four California stores. Haptics and recently viewed start on. Reduce motion starts off. Currency and units are a note, not a control, because the shop is U.S.-only.
+
+**Notifications.** Order updates, delivery alerts, and loyalty rewards start on. Promotions start off. A note separates those first-party messages from ad-network sharing.
+
+**Saved shopping.** Two addresses and two cards are preloaded, each with one default. Add, edit, remove, and set-default are on the detail screens. A new card asks only for brand, last four, and expiration.
+
+**Security.** Face unlock starts on. Two-step verification starts off. Change password, sign out other devices, and delete account are buttons. Deletion asks the user to type DELETE, then schedules closure with Undo on the home screen. Sign out asks for confirmation, then shows a sign-in screen.
+
+**California privacy.** Two full-length rows use the statutory phrases “Do Not Sell or Share My Personal Information” and “Limit the Use of My Sensitive Personal Information.” Both switches start off, which matches the manifest: sale and sharing, and use of precise location for advertising, are active until the shopper opts out. The same screen links to the notice at collection, the privacy policy, the terms, and a California access, delete, or correct request. The request form sends to the account email. A correction request also requires a short description.
+
+**Support.** Three FAQs expand in place. The contact form starts empty, with the topic set to Order.
+
+The manifest is California retail, with named categories of personal information and sharing for cross-context advertising. That is why the home list has a California privacy group, why the opt-out and sensitive-information limits are separate switches, and why the notice and policy name the same categories the manifest lists: identifiers, device IDs, browsing, shopping activity, and precise geolocation. Precise location is treated as sensitive information and, when limited, stays available for delivery and nearby stores. Promotional notifications stay independent of the sale-or-share switch.
+
+The screen did not become a data-inventory dashboard. Account settings still leads with profile, shopping, and security, because that is the task the brief describes. The manifest changed the privacy section and its default copy, not the overall retail settings structure.
+
+The priority was a compact phone layout where every row does something, without a second navigation app. Drill-in screens keep the home list short enough to sit inside the frame. Statutory privacy labels stay long even though they wrap, because shortening them would hide the choice. Defaults follow current practice in the manifest: sharing and sensitive-location use are on until changed, while marketing pushes start off so a promo toggle is not confused with an ad opt-out. Destructive actions (sign out, delete) take an extra confirmation. Everyday edits save in one step.

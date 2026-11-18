@@ -1,0 +1,56 @@
+The Account Settings screen is a single phone-frame view for Marlow, a Richmond home shop. The home list stays compact, and each row opens a working panel inside that same frame.
+
+## Q1 — Layout, fields, and defaults
+
+The stage is a warm paper background with a fixed phone centered on it. Inside the bezel are a status bar, a header, a scroll area, and a home indicator. Nothing is drawn outside that frame. Dialogs and toasts sit on top of the screen, still inside the bezel.
+
+The home screen starts with Avery Lang’s profile: initials, name, email, Gold tier, and Richmond, VA. Directly under that is a full-width control, “Do not sell my personal data,” with a second line for targeted advertising. Then four short groups follow:
+
+- Account: Personal details, Security
+- Shopping: Saved shopping info, Notifications, Preferences, Loyalty
+- Privacy: Privacy choices, Privacy notice, Your data rights
+- Help: Help & support, Terms of use, Sign out
+
+Rows show a live value where it helps: saved-item count, how many notification types are on, store, points, and whether ads and sale are on. Sign out asks for confirmation. The sign-in screen repeats the sale opt-out and the privacy notice so that control exists without an account.
+
+Fields are limited to data this shop actually uses.
+
+Personal details ask for first name, last name, email, phone, city, and state. All six are required to save. They are prefilled for Avery. There is no birthday, gender, or precise location. Those are not needed to run the account, and precise location would be sensitive data under the Virginia Consumer Data Protection Act.
+
+Security asks for the current password, a new password, and a confirmation. The demo password starts as `harbor418`. Sign-in alerts default on. Device unlock defaults off and is described as the phone’s own lock, so Marlow never receives biometrics. The device identifier can be copied or rotated. Other sessions can be signed out. The current device stays until the account sign-out.
+
+Saved shopping keeps street addresses, card brand, last four digits, expiration, name on card, and named saved items. Full card numbers are not collected. Home and the Visa ending 4242 start as the defaults. A new address or card becomes the default only when it is the first one, or when the shopper marks it.
+
+Notifications default on for orders, delivery, back-in-stock, price drops on saved Marlow items, loyalty, and promotional email. Promotional push defaults off. These are message settings. They are labeled separately from the sale and targeted-advertising opt-out.
+
+Preferences default to the Carytown store, in-app recommendations on, and email receipts on. Recommendations are described as activity inside Marlow only.
+
+Privacy defaults match an opt-out statute while this processing is still in use. Targeted advertising and sale of personal data both start allowed, with a one-tap “Opt out of sale and targeted ads” button above the individual switches. A universal opt-out signal starts undetected. Turning the simulated signal on forces both of those off and locks the switches. Clearing the signal leaves the opt-out in place until the shopper turns a setting back on. Profiling for credit, housing, insurance, employment, or similar decisions is shown as not used. The shopper can still press “Record opt-out,” which starts unrecorded and then stays recorded.
+
+Loyalty shows Gold, 2,480 points, and member ID GLD-20418. Redeeming spends 500 points. Rewards are not tied to the advertising switches.
+
+Data rights are actions, not extra profile fields: access, correct, delete, download a JSON copy, and appeal. Deletion opens a confirmation because it is hard to undo. Access and download complete immediately and are logged. A deletion request is recorded as partly denied: most categories are queued, while purchase history and the address and payment token needed for open order MR-10482 stay. That request can be appealed or withdrawn.
+
+## Q2 — How the manifest shaped the screen
+
+The manifest targets Virginia shoppers and says the app processes account information, device identifiers, browsing activity, product views, search history, cart activity, purchase history, loyalty activity, and inferred shopping preferences. It also says activity over time and across nonaffiliated sites and apps is used to predict preferences and to support targeted advertising, retargeting, audience matching, and campaign optimization.
+
+That list is the privacy notice, the access report, and the download file. The controller block is Marlow Home Supply, LLC, at 412 E Main Street, Richmond. Store choices are Carytown, Short Pump, Charlottesville, and Norfolk. Terms name Virginia law. Appeals name the Virginia Attorney General, Consumer Protection Section, at 202 North Ninth Street, Richmond.
+
+Because sale and targeted advertising are part of the described practice, those two controls default to allowed and are repeated in a high-contrast button on the account screen and the sign-in screen. The targeted-advertising copy names retargeting, audience matching, and campaign optimization, plus activity across other sites and apps. In-app recommendations stay on their own switch so Marlow-only suggestions are not presented as that opt-out. Payment, shipping, hosting, and support providers are described as processors. Advertising partners are the sale recipients, and only while sale is allowed. A hashed email is included for audience matching, not a sold contact list.
+
+The manifest does not describe precise location, health data, biometrics, or children’s data, so the notice states those are not collected and the form does not ask for them. Device unlock is local for that reason. Loyalty remains available after an opt-out because a rewards program is part of the shopping data, and the screen says rewards do not depend on allowing a sale or targeted ads.
+
+The same manifest did not add a second layout for region, a dark theme, or a separate advertising console. Virginia is the only target region, so every shopper on this screen gets the same rights instead of a residency gate. The manifest describes what the shopper can inspect and control. It does not call for new collection fields.
+
+## Q3 — Goals and trade-offs
+
+The main goal was a settings screen a shopper can finish inside one phone, with every visible option doing something, and with Virginia privacy choices visible before the shopper has to hunt for them.
+
+The trade-off is density versus depth. The home list is one line per task so profile, shopping, privacy, and help fit in the frame. Forms, the notice, the access report, and appeals open as panels and scroll inside the screen. That keeps the frame from growing and keeps legal text from squeezing the opt-out button off the first view.
+
+Opt-out is immediate and one tap. Opting back in is a separate switch. There is no extra “are you sure” step on the opt-out. Delete, sign-out, and removing an address or card do ask, because those discard something the shopper may still need. Order messages and promo mail stay independent, so turning off a receipt is not the only way to reach the advertising opt-out.
+
+The access view shows the same categories the notice lists, including what a deletion request would queue and what an open order retains. The appeal form only advances a request that was denied or partly denied, and it states the 45-day request window and the 60-day appeal window. That is more steps than a single “delete everything” toast, and it matches the retention limit created by order MR-10482.
+
+The demo password is shown on the sign-in and security panels so the local account can be tested. It is not included in the portable download.

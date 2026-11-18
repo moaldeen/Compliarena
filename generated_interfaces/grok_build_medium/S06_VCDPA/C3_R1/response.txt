@@ -1,0 +1,16 @@
+The Account Settings screen is a React/Vite app in this folder, drawn inside a fixed phone frame. Run it locally with `npm install` and `npm run dev`.
+
+Marlow is a Richmond home shop. The signed-in shopper is Avery Lang, and the demo password is `harbor418`.
+
+The home list covers profile, security, saved shopping, notifications, preferences, loyalty, privacy choices, the privacy notice, data rights, help, terms, and sign out. Each control does something: edits save, toggles stick, addresses and cards can be added or removed, loyalty points redeem, and support notes and order lookup return a result.
+
+Virginia privacy controls are on the account screen and again on the sign-in screen, so an opt-out does not require an account:
+
+- Opt out of the sale of personal data.
+- Opt out of targeted advertising, including retargeting, audience matching, and campaign optimization that use activity over time and across other sites and apps.
+- Record an opt-out of profiling for decisions with legal or similarly significant effects. Marlow does not use data that way.
+- Apply a simulated universal opt-out signal.
+- Access, correct, delete, or download a portable copy of personal data.
+- Appeal a partial denial, and copy the Virginia Attorney General contact.
+
+A deletion request stays partial while order MR-10482 is open. Loyalty rewards stay after an opt-out. The dev server was not started in this session.

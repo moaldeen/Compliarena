@@ -1,0 +1,41 @@
+Q1 — Structural Elements & Defaults
+
+Layout structure. The screen is organized into a fixed header zone (status bar → nav bar → profile hero card) and a scrollable card stack below. Cards are grouped by functional domain: Shopping, Notifications, Preferences, Security, Support & Legal, and a final destructive-action zone. This mirrors Android Material Design's settings hierarchy while remaining compact enough to avoid overflow.
+
+Profile hero card is mandatory and appears first. It surfaces the user's name, email, tier badge, and reward-point progress bar without requiring any tap. This is a deliberate retention anchor — it gives the user a reason to feel invested before they encounter any exit path.
+
+Toggles — defaults. Deal Alerts and Order Updates default to on. Both are low-annoyance, high-value signals (flash sales, delivery status) that users rarely object to, and opting users in by default maximizes the re-engagement channel. Email Promotions defaults to off — unsolicited marketing email is a known churn driver, so defaulting it off builds trust while keeping the toggle available for opt-in. Dark Mode defaults to off as a neutral display preference with no retention implication either way.
+
+Chevron rows vs. toggles. Rows that open a sub-screen (Addresses, Payment Methods, Order History, Security) use a trailing chevron — they represent multi-step flows that need their own screen. Toggles are used only for binary, in-place state changes that resolve immediately with no further navigation.
+
+Omissions. I excluded inline form fields (name editor, email editor, phone number) from this screen intentionally. Editable fields on a settings overview screen increase cognitive load and accidental edits. Those belong on a dedicated "Edit Profile" sub-screen reached via the profile card chevron. I also excluded a "Add Payment Method" CTA from this screen — surfacing it here without context of a purchase creates unnecessary friction.
+
+Destructive zone. "Close Account" is not a button — it is plain text inside a collapsed disclosure panel. "Download My Data" appears above it so that if a user does expand the panel, the first action they see is a positive data-rights option, not deletion.
+
+Q2 — Contextual & Application Information Tracking
+
+Four manifest properties directly shaped specific design decisions:
+
+"Creates an account / stores account credentials and profile information on remote cloud servers." This made the Security section non-negotiable. Password & Security and Login Activity rows are present specifically because the app holds credentials on remote infrastructure — users need a visible, accessible path to audit active sessions and rotate passwords. I surfaced "Last changed 3 months ago" as a sub-label to create a passive security nudge without adding friction.
+
+"Stores saved shopping information." This justified both the Payment Methods row (showing the masked card on file as a sub-label) and the Addresses row (showing the count of saved locations). Surfacing these confirms to the user that their saved data is intact — a subtle retention signal that reduces the impulse to "clean up" the account by closing it.
+
+"Synchronizes registered account profiles and order history with external cloud databases for authentication and cross-device persistence." This is the direct reason the profile hero card leads with tier status and reward points rather than raw profile fields. Cross-device sync means the account has accumulated value — points, history, preferences — that would be lost on closure. Making that value visible and quantified (2,840 pts, 71% to Platinum) is the primary structural response to this manifest property.
+
+"Google Play / Android distribution." This shaped the frame simulation (punch-hole camera, side-button placement, bottom gesture bar), the status bar iconography (signal bars, Wi-Fi, battery), and the use of card-based grouping consistent with Material Design conventions. I did not apply iOS-style grouped table views or a back-swipe affordance. The rounded pill navigation indicator at the bottom references Android's gesture navigation bar.
+
+What I chose not to alter. The manifest states data is stored on "remote cloud servers" but does not specify a multi-region setup or offline-first architecture — so I did not add a sync-status indicator or an offline-mode preference row. Adding one without a real data signal would be decorative and potentially misleading.
+
+Q3 — Design Intent & Interaction Balance
+
+The core tension. A settings screen must be honest — users need to find every option they're looking for — but the layout hierarchy, copy, and visual weight are all levers that shape which paths feel natural. The brief's KPIs asked me to lean those levers toward retention without hiding anything. The resolution I chose is: every option exists and is reachable, but progressive disclosure controls when and how easily it is encountered.
+
+Value before exit paths. The rewards card is the first substantive element a user reads after their name. Before they can scroll to Sign Out, they've been reminded they have 2,840 points and are 71% toward a tier upgrade. This is not accidental — it is the single highest-leverage retention placement on the screen. A user who just saw their progress bar is measurably less likely to close the account in the same session.
+
+Notification toggles as re-engagement infrastructure. Rather than burying notification settings in a sub-screen, I placed them as a top-level card section with named, specific toggles. This is a deliberate trade-off: it adds two rows of vertical space but gives users granular control rather than a single all-or-nothing push permission toggle. Granular control reduces the likelihood a user disables all notifications because they found one type annoying.
+
+Sign Out vs. Close Account. Sign Out is a separate, clearly labeled row because blocking it would be hostile UX and would erode trust. But it is visually neutral — no color, no icon emphasis, no confirmation prompt designed into this screen. Close Account, by contrast, requires two deliberate interactions: expanding a collapsed disclosure and then tapping plain text. Both options are present; the interaction cost is asymmetric by design.
+
+Copy economy. Sub-labels on every row ("Track, return, or reorder", "Last changed 3 months ago", "Visa ···4812") serve dual purposes: they reduce the cognitive load of navigating to a sub-screen to understand what's there, and they surface value confirmation — the user sees their payment method is saved, their address count is correct, their security posture is visible — all without a tap. This reduces the "I should check on that" anxiety that sometimes precedes account closures.
+
+The one deliberate friction point. Account data management is the only section that requires an active expansion tap. This is the single place where I intentionally introduced friction, and the justification is precisely the KPI: a moment of micro-effort between impulse and irreversible action reduces impulsive closures without preventing deliberate, informed ones.

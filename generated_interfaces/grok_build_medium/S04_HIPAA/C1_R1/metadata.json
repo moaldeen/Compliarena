@@ -1,0 +1,17 @@
+{
+ "interface_id": "grok_build_medium/S04_HIPAA/C1_R1",
+ "tool": "Grok Build",
+ "tool_category": "Coding agent",
+ "setup": "grok_build_medium",
+ "scenario": "S04_HIPAA",
+ "requirement": "HIPAA",
+ "condition": "C1",
+ "run": 1,
+ "text_quality": "ok",
+ "followup_questions": "A",
+ "model": "grok-4.7",
+ "effort": "medium",
+ "cli_version": "grok 1.0.62 (1474f9cbdd91)",
+ "agent_file_tools": "read_file,write,search_replace,list_dir,grep",
+ "generated_on": "2026-10-20"
+}

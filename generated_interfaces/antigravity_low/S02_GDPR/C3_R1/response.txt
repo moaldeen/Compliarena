@@ -1,0 +1,34 @@
+I have created a complete, runnable React + Vite application for the **EU-Compliant Health & Wellness Profile Setup Screen**.
+
+### What Was Built:
+1. **Device Frame Simulation**:
+   - Styled fixed mobile phone frame with camera notch, dynamic status bar (time, 5G, battery indicator), and bottom gesture home indicator.
+   - Built to fit seamlessly within the viewport with compact layout proportions and no cut-off content.
+
+2. **Health Profile Personalization Controls**:
+   - **Heart Rate Baseline**: Dynamic slider input with real-time athletic/average baseline indicators.
+   - **Target Sleep Window**: Dual time inputs (bedtime & wake-up) with automatic calculation of target sleep duration.
+   - **Physical Activity Level**: Interactive chip selector (Light, Moderate, Intense).
+   - **Primary Objective Focus**: Functional radio selector for core wellness priorities.
+
+3. **EU GDPR Compliance Integration**:
+   - Explicit Special Category Health Data processing consent (GDPR Art. 9) with validation.
+   - Optional secondary consent for personalized algorithmic insights.
+   - GDPR Privacy Notice modal detailing controller identity, legal basis, and data subject rights (access, erasure, portability, withdrawal).
+
+4. **Architectural Separation**:
+   - Manifest background telemetry, database metrics, and server sync pipelines are strictly kept as background context and omitted from the client UI.
+
+### Project Files Created:
+- [package.json](file:///work/package.json)
+- [vite.config.js](file:///work/vite.config.js)
+- [index.html](file:///work/index.html)
+- [src/main.jsx](file:///work/src/main.jsx)
+- [src/App.jsx](file:///work/src/App.jsx)
+- [src/index.css](file:///work/src/index.css)
+
+You can run this project locally by extracting the workspace files and executing:
+```bash
+npm install
+npm run dev
+```

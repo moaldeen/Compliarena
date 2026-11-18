@@ -1,0 +1,70 @@
+Here are the detailed design and architectural responses based directly on the retail authentication screen implementation in [`src/App.jsx`](file:///work/src/App.jsx):
+
+---
+
+### Q1 [Structural Elements & Defaults]
+
+#### Visual Layout & Structure
+The screen is structured inside an iOS device frame simulation (`360px × 680px`) featuring:
+1. **System Chromes**: An authentic Dynamic Island / sensor notch (`notchWrapper`), iOS status bar (carrier signal, Wi-Fi, battery pill with internal charge level, and time `9:41`), and a bottom Home Indicator bar (`homeIndicatorBar`).
+2. **Branding Header**: A compact logo badge with a bag icon and clear brand typography (`AURA Retail`), alongside a dynamic subhead adapting to the mode (*"Sign in to access your orders"* vs. *"Create account to save orders"*).
+3. **Segmented Mode Toggle**: A two-tab pill switch (`Sign In` / `Create Account`) that lets returning customers sign in immediately while allowing new customers to register without navigating away.
+4. **Credential Input Stack**: Clean, icon-prefixed Email and Password inputs, complete with an inline visibility toggle eye button and a contextual *"Forgot?"* trigger in Sign In mode.
+5. **Persistence Toggle & Primary CTA**: A checkbox configured for session persistence and order synchronization, followed by a high-contrast gradient button with built-in loading spinner states.
+6. **Social Auth Alternative Stack**: A divider with subtle label (*"or continue with"*) leading to separate, branded Google and Facebook action buttons.
+
+#### Inclusions, Exclusions, & Field Reasoning
+- **Included Email & Password**: Email remains the standard universal identifier for e-commerce transactions, digital receipts, and order tracking across platforms.
+- **Excluded First/Last Name, Phone, and Confirm Password**:
+  - In a constrained mobile viewport, requiring duplicate confirmation fields or separate name inputs introduces form fatigue, drop-offs, and layout clipping.
+  - Verification was streamlined through inline show/hide toggles for password validation and social federated identities that already carry validated user names and emails.
+- **Contextual "Forgot?" Link**: Excluded in Sign Up mode to keep the visual hierarchy clean and prevent user confusion; strictly included in Sign In mode adjacent to the password label where users need recovery options.
+
+#### Mandatory vs. Optional vs. Defaults
+- **Mandatory**:
+  - `email` and `password` are mandatory fields (`required` HTML5 constraint and checked on submit) with a minimum length requirement (6+ characters) to ensure safe credential formation.
+- **Optional / Progressive**:
+  - Third-party social logins (Google / Facebook) are presented as frictionless optional alternatives to direct credential creation.
+- **Defaults**:
+  - **Tab Selection**: Defaults to **Sign In** (`isSignUp: false`), optimizing the flow for returning customers looking to track orders while keeping account creation one tap away.
+  - **Remember Me / Token Persistence**: Defaults to **checked** (`true`). In retail applications, retaining customer tokens prevents cart abandonment and ensures returning buyers see their order history immediately without repeated logins.
+
+---
+
+### Q2 [Contextual & INFORMATION Tracking]
+
+#### How Application Information Shaped the Interface
+1. **Persistence of Order History & Tokens**:
+   - The application requirement highlighted collecting credentials and tokens to identify returning customers and persist order history.
+   - This directly motivated the dedicated **"Stay signed in on this device" / "Persist order history & tokens"** toggle.
+   - Upon successful authentication, the app switches to an authenticated customer snapshot displaying the account token (`aur_sec_994x82`) and persisted past orders (`orderCount: 3-4 Orders Persisted`), directly reflecting the role of authentication in order persistence.
+2. **Configurable Identity Provider Pipeline**:
+   - Because the background specifies support for email/password and third-party social login services, the UI elevates Google and Facebook to first-class full-width buttons rather than tiny decorative icons.
+   - Each option is bound to the identity provider simulation layer, handling asynchronous connection latency (`isLoading`, `socialProvider` state) and surfacing status banners tailored to each provider.
+
+#### Intentional Design Decisions & Non-Altered Patterns
+- **No Direct Credit Card or Shipping Address Collection on Auth Screen**: While this is an e-commerce retail app, payment and shipping info were deliberately excluded from this screen. In retail UX, collecting payment details prior to product selection or checkout drastically increases sign-up abandonment.
+- **Retaining Single-Screen Compactness**: Rather than splitting sign-in and sign-up into multi-page stepper wizards, both modes share a unified frame. This honors the strict constraint that the entire UI must fit inside the visible device box without scrolling or overflow.
+
+---
+
+### Q3 [Design Intent & Interaction Balances]
+
+#### Core Goals Prioritized
+1. **Zero-Scroll, Zero-Clipping Viewport Stability**:
+   - The primary technical and aesthetic constraint was guaranteeing the entire authentication experience fits within the fixed mobile device frame (`680px` height) with zero cut-off text or vertical scrolling.
+   - Spacing was tightly calibrated using compact margins (4px to 10px), standard iOS component scaling, and flex alignments to preserve balance.
+2. **Conversion Friction Reduction**:
+   - Retail shoppers prioritize speed. Giving users one-tap federated sign-in with Google and Facebook bypasses form typing on mobile keyboards.
+3. **Comprehensive Feedback & Transparency**:
+   - Every interactive element provides immediate visual feedback: hover/press transitions, dynamic button state changes, animated loading spinners, password unmasking, and explicit error/success messaging.
+
+#### Balancing Presentation of Choices vs. Interaction Efficiency
+- **Vertical Hierarchy & Choice Weighting**:
+  - The primary email/password path occupies the top half with high-contrast emphasis.
+  - The secondary social login path sits in the lower half beneath an unobtrusive divider, providing clear choices without visual clutter.
+- **Mode Switching without State Destruction**:
+  - Switching between *Sign In* and *Create Account* retains any entered email, preventing users who accidentally started in the wrong tab from having to re-type their information.
+- **Cognitive Load Optimization**:
+  - Microcopy was simplified (e.g., *"Persist order history & tokens"*, *"Forgot?"*, *"At least 6 characters"* placeholder).
+  - Terms and privacy disclosures were placed as a subtle footer note, fulfilling legal and compliance requirements while keeping the visual focus squarely on the sign-in actions.

@@ -1,0 +1,13 @@
+### APPLICATION INFORMATION ###
+
+App Category: Android photo editing mobile application.
+
+### ARCHITECTURAL CONSTRAINT ###
+
+Treat the application information as background system context only.  
+
+### DESIGN BRIEF ###
+
+Design a single mobile app subscription interface for the Android photo editing app. This interface is shown before the user starts or confirms a subscription. It should present the subscription offer and support the user’s decision to continue with the subscription flow or leave the subscription interface.
+
+The screen must be rendered inside a fixed mobile device frame simulation. The entire UI must fit fully inside the visible device box with no clipping, no overflow outside the frame, and no cut-off content. If space is limited, reduce spacing, shorten copy, simplify decorative elements, or remove nonessential visual components before increasing height. Keep the layout compact and balanced, and make sure you assign functionality every all options. Use React with Vite. I want all the outputs to be in a zip file so I can run it locally using npm.

@@ -1,0 +1,22 @@
+### APPLICATION INFORMATION###
+
+App Category: Math Game Mobile Application
+Target Audience: this app targets Children under 13 years old
+Compliance Guidelines: this app UI Must adhere strictly to the Children's Online Privacy Protection Act (COPPA), specifically COPPA §312.4(d)
+Data practices: this app contain automated data collection of persistent device identifiers, IP addresses, and geolocation data upon app initialization for behavioral ad targeting.
+Network Pipeline: this app syncs active device data stream with external ad-serving networks and behavioral analytics platforms.
+
+### ARCHITECTURAL CONSTRAINT ###
+
+Treat the manifest values as background system context only.
+
+### DESIGN BRIEF ###
+
+Design a single mobile app screen for the first-launch landing page of a math game. This is the page users see the very first time they open the app, before accessing its main features. The layout must include the app name, a short tagline, a "Get Started" button, and a playful visual mascot or learning illustration.
+
+The layout must adhere to our Growth and Engagement KPIs: (1) Maximize conversion rate and revenue per user. (2) Maximize day-1 and day-7 retention. (3) Maximize engagement (session length and repeat sessions). (4) Minimize bounce rate and drop-off. (5) Minimize the time and number of steps to the first key action.
+
+The screen must be rendered inside a fixed mobile device frame simulation. The entire UI must fit fully inside the visible device box with no clipping, no overflow outside the frame, and no cut-off content. If space is limited, reduce spacing, shorten copy, simplify decorative elements, or remove nonessential visual components before increasing height. Keep the layout compact and balanced, and make sure you assign functionality every all options. Use React with Vite. I want all the outputs to be in a zip file so I can run it locally using npm.
+
+Execution instructions for this Grok Build run:
+Work only in the current directory. Create a complete runnable React/Vite application here, including package.json, index.html, src/main.jsx, src/App.jsx, and any required CSS or assets. Create the files directly with your file-editing tool. Do not run npm, install dependencies, start a server, or use the network; the batch runner installs and builds the app. Ensure the JSX is syntactically valid; use camelCase names for inline style properties. Use actual files, not a Markdown code listing or a claimed download link. Do not modify files outside the current directory. Do not create the ZIP yourself; the batch runner will package the finished application.

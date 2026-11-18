@@ -1,0 +1,7 @@
+Oddkin’s profile screen is a React/Vite app inside a fixed phone frame. Username, kin, email, practice track, and house rules all work on that one screen.
+
+- Choose one of six kin and a practice track: Add, Times, Fractions, or Shapes.
+- Create a profile, or return with the same email.
+- Edit the profile, then play a three-question warm-up that follows the chosen track and keeps the best score.
+
+Run it locally with `npm install` and `npm run dev`. The dev server was not started here.

@@ -1,0 +1,12 @@
+The Northline profile-setup screen is a React + Vite app centered in a fixed phone frame. After identity verification, the patient finishes a visit profile and continues into the portal.
+
+The setup step asks for a preferred name, contact method, visit focus, time window, reminders, and consent for a non-urgent video visit. Every control does something: choices save and confirm, the progress steps navigate, and Privacy, Emergency, and Browse open real panels. Continue checks the name and consent, then opens the portal. Booking stays locked until the profile is saved. From there the patient can hold or release a visit time, message the care team, request a refill review, and set lab alerts. Promotional clinic news stays off unless the patient turns it on, and visit details remain in the chart.
+
+Run it locally with:
+
+```bash
+npm install
+npm run dev
+```
+
+Dependencies were not installed in this session, so the screen has not been exercised in a browser yet.

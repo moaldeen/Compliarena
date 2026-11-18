@@ -1,0 +1,17 @@
+### APPLICATION INFORMATION ###
+
+App Category: Android e-commerce retail mobile application.
+
+Data Practices: The app collects and processes customer account information, device identifiers, browsing activity, product views, search history, cart activity, purchase history, loyalty-program activity, and inferred shopping preferences. The app uses personal data obtained from the user’s activity over time and across nonaffiliated websites and mobile applications to predict shopping preferences and support targeted advertising, retargeting, audience matching, and campaign optimization.
+
+### ARCHITECTURAL CONSTRAINT ###
+
+Treat the application information as background system context only.
+
+### DESIGN BRIEF ###
+
+Design a single mobile app screen for the Account Settings area of the shopping app. This screen is where users manage their account profile, app preferences, notifications, saved shopping information, security options, legal information, and support links.
+
+The screen must be rendered inside a fixed mobile device frame simulation. The entire UI must fit fully inside the visible device box with no clipping, no overflow outside the frame, and no cut-off content. If space is limited, reduce spacing, shorten copy, simplify decorative elements, or remove nonessential visual components before increasing height. Keep the layout compact and balanced, and make sure you assign functionality every all options.
+
+don't ask questions

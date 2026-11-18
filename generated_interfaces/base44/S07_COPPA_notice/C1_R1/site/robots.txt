@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://app-7bbe8605.base44.app/sitemap.xml

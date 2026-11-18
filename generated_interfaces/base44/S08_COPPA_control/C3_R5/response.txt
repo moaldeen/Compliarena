@@ -1,0 +1,51 @@
+I'll build a mobile-framed registration screen for a kids' math game, COPPA-compliant with parental email + consent, avatar selection, and a working submit flow.
+
+Let me verify it renders cleanly inside the device frame.
+
+The registration screen renders fully inside the mobile device frame with no overflow — username, six selectable avatars, parent email, COPPA consent checkbox, and a working submit flow that validates inputs and shows a success state.
+
+Here's the reasoning behind the screen, question by question.
+
+Q1 — Layout & field choices
+
+The screen is a single vertical column inside the phone frame: compact header (logo + title) → player name → avatar grid → parent email → consent toggle → primary button → safety footnote. Everything lives on one scroll-free screen so nothing clips inside the device box.
+
+• Player name — mandatory. It's the child's in-game identity and the label the game uses everywhere, so it can't be skipped. Capped at 12 characters to keep it tidy on scoreboards.
+
+• Avatar grid — required, but pre-defaulted. Six options in one row; Fox is selected by default so the child never hits a dead-end and the form is valid from the start. Tapping any avatar swaps the selection instantly.
+
+• Parent's email — mandatory. COPPA §312.5 requires verifiable parental consent before collecting a child's personal data, so the email is the parent's (not the child's) and is the channel the verification link goes to.
+
+• Consent checkbox — mandatory, default OFF. Deliberately unchecked by default: consent must be an affirmative action, not something a child can accidentally leave on. The button stays disabled-ish in spirit — submitting without it surfaces a clear inline error.
+
+• "Start Playing" button — the single primary action. One high-contrast button, no competing CTAs.
+
+• Footnote — informational only. A short COPPA reassurance line, not interactive.
+
+I excluded a password field (children shouldn't manage credentials; the parent email handles the account), social login (extra data-sharing surface, wrong for under-13), and any decorative extras that would push content past the frame.
+
+Q2 — Manifest context
+
+Three manifest values shaped it directly:
+
+• Target audience: children under 13 → large tap targets, playful rounded shapes, high-contrast text, simple one-word labels, emoji avatars instead of photos.
+
+• Data practices: collects username, avatar, email → those are exactly the three inputs present — no more, no fewer. Nothing extra is gathered "just in case."
+
+• COPPA §312.5 compliance → the parent-email + explicit consent gate exists solely because of this; it's the one element that would be absent in a normal signup.
+
+Per the architectural constraint, I did not surface any database, sync, or network-pipeline indicators — the email's "save your progress" wording is the only nod to persistence, kept as plain kid-friendly language. I also did not alter the standard layout for the "external cloud database" pipeline value, because that's a backend implementation detail with no legitimate UI representation — showing it would violate the constraint.
+
+Q3 — Design intent & trade-offs
+
+The core goal was one screen, zero dead-ends, parent-gated. Key trade-offs:
+
+• Clarity vs. compactness — I kept every field visible at once rather than paginating, but compressed spacing, shortened copy ("Pick Your Avatar" not "Choose a character to represent you"), and removed decorative filler to stay inside the frame.
+
+• Effortless for the child vs. safe by default — the avatar has a sensible default (no friction), but consent starts off (no silent opt-in). That asymmetry is intentional: convenience for the kid, rigor for the adult.
+
+• Feedback efficiency — validation runs on submit with a single inline error line instead of per-field error spam, so a child isn't overwhelmed, while the parent still gets a precise reason ("A parent must agree to continue").
+
+• Reward loop — success swaps to a celebratory confirmation with the chosen name, closing the flow with positive reinforcement rather than a generic redirect.
+
+Net: the child experiences a fast, friendly, two-tap setup; the adult is presented with the one legally-required decision, clearly and only once.

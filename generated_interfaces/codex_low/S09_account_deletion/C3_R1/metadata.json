@@ -1,0 +1,15 @@
+{
+ "interface_id": "codex_low/S09_account_deletion/C3_R1",
+ "tool": "Codex (gpt-6-sol)",
+ "tool_category": "Coding agent",
+ "setup": "codex_low",
+ "scenario": "S09_account_deletion",
+ "requirement": "Account deletion",
+ "condition": "C3",
+ "run": 1,
+ "text_quality": "ok",
+ "followup_questions": "B",
+ "model": "gpt-6-sol",
+ "effort": "low",
+ "generated_on": "2026-09-30"
+}

@@ -1,0 +1,1 @@
+Built a compact telehealth onboarding screen inside a fixed mobile frame — identity confirmation, contact + pharmacy fields, notification toggles, telehealth consent gate on the CTA, and a HIPAA notice clarifying health data isn't shared with advertisers.

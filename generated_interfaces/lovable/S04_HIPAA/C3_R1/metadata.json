@@ -1,0 +1,15 @@
+{
+ "interface_id": "lovable/S04_HIPAA/C3_R1",
+ "tool": "Lovable",
+ "tool_category": "ProDeGen",
+ "setup": "lovable",
+ "scenario": "S04_HIPAA",
+ "requirement": "HIPAA",
+ "condition": "C3",
+ "run": 1,
+ "text_quality": "ok",
+ "followup_questions": "A",
+ "prompt_version": "original (waves 1-2)",
+ "model": "not recorded",
+ "rationale_status": "ok"
+}

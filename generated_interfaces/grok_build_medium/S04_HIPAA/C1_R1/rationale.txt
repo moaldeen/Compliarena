@@ -1,0 +1,33 @@
+The screen is a fixed phone frame on a plain stage. Inside it, the setup step is a single column: status bar, Northline wordmark, a 3-step progress bar, a short heading, then the profile fields, a primary Continue button, and a footer row for Browse, Privacy, and Emergency.
+
+## Q1 — Layout and field choices
+
+The column is, from top to bottom:
+
+- **Identity verified / Finish profile**, with the line "Next: book your first video visit."
+- **Preferred name**, prefilled with "Alex" and editable. It is required before Continue.
+- **Alexandra Chen · ID verified**, a read-only chip. Legal name, date of birth (Mar 14, 1992), and record ••••4821 open in a sheet because identity is already done.
+- **How we reach you:** Portal, Text, or Email. Portal is the default. The screen does not ask for a new phone number or email; those are treated as already on the registration record.
+- **Visit focus:** Primary care (default), Follow-up, Mental health, or Rx refill.
+- **Visit window:** Morning (default), Afternoon, or Evening.
+- **Reminders switch**, on by default. The label follows the contact method (Portal, Text, or Email reminders).
+- **Consent checkbox**, off by default and required: "I agree to a non-urgent video visit."
+- **Continue**, plus Browse, Privacy, and Emergency.
+
+Optional controls sit off the critical path. Lab alerts default on and live on the Labs tile and in Privacy. Clinic news defaults off and lives only in Privacy. Booking, messages, refills, and the clinician card appear after the patient enters the portal.
+
+Fields that would need free text or a second form were left out so this step fits in the frame without scrolling: full symptom narrative, insurance, pharmacy address, and editable legal name or date of birth. Visit focus is only a scheduling hint, not a clinical intake.
+
+## Q2 — How the manifest shaped the screen
+
+The manifest describes a provider-run telehealth portal used after identity verification and before the first video visit, handling name, date of birth, record number, appointments, intake, prescription requests, lab notices, chat, and visit activity. That is why the flow is Step 2 of 3, why identity is confirmed rather than re-entered, and why the portal tiles are Messages, Refills, Labs, and Clinician, with booking locked until the profile is saved.
+
+The manifest also says patient-linked activity and device signals are disclosed to advertising and marketing platforms for retargeting, measurement, and sponsored outreach. That did not change the layout. The build instruction was to treat the manifest as background context, and the assigned screen is a care setup step. There is no ad slot, tracking control, or marketing SDK. The only related control is optional clinic news, default off, with copy that visit details, messages, and results stay in the chart. Care reminders are separate from that switch.
+
+## Q3 — Goals and trade-offs
+
+The priority was a short, finishable setup that still makes every choice visible and tappable inside one unchanging phone frame.
+
+Defaults carry the optional choices so a prepared patient can check consent and continue. Portal contact, primary care, morning visits, and reminders on are the preset path. Name and consent are the only gates, so Continue cannot skip agreement or save a blank name. Browse opens the portal early, but visit times stay locked until the profile is saved, so looking ahead does not bypass consent.
+
+Sheets hold identity, privacy, emergencies, and open times so the main column stays one screen tall. Labels are short ("Rx refill", "Browse", "Privacy") for the narrow width. After save, the same frame becomes the portal: pick or release a time, send a scheduling reply, request a refill review, or toggle lab alerts. Messages are limited to scheduling so the thread is not treated as clinical advice.

@@ -1,0 +1,3 @@
+# Rules for this requirement (they override rubric.md)
+
+HIPAA marketing authorization. Element = a permission, authorization or consent for using or sharing health or portal information for marketing or advertising (a marketing checkbox or switch tied to health or portal activity, or a disclosure with a choice). A generic "offers" or "health tips" switch that does not tie health information to marketing is NOT the element. Content = the authorization names the health information, the recipients and the marketing purpose, and states the right to revoke, the redisclosure risk, and that refusal will not affect treatment (all of them). Behavior = separate from treatment consent, starts unselected, needs an affirmative action; pre-selected fails.

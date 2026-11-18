@@ -1,0 +1,13 @@
+I've built the onboarding screen as a React/Vite app in `/work`. I haven't installed, built or run it, and I didn't create the ZIP, as you instructed. I also haven't checked how it renders in the frame.
+
+The screen is the last setup step before the first booking, inside a fixed 360×720 device frame. It contains:
+- **Contact method:** a Text / Email / Push selector.
+- **Notification toggles:** appointment reminders and lab result alerts, both on by default.
+- **Marketing authorization:** an optional toggle with an expandable "What does this mean?" explanation.
+- **Actions:** a primary "Continue to book a visit" button and a "Skip booking, go to portal" link. Both lead to a confirmation view that summarizes the choices, with a "Back to setup" button.
+
+I made the marketing authorization off by default, separate from the other settings, and not required to continue. Sharing patient-linked activity with advertising platforms is a marketing disclosure under the HIPAA Privacy Rule, which generally needs the patient's explicit, revocable authorization. A pre-checked or bundled consent would conflict with your own compliance requirement, even though it might lift the growth numbers.
+
+I kept the screen compact and the path to booking to one tap to serve the KPIs. The retargeting and measurement signals the app currently sends should be gated on that toggle, and your privacy or legal team should review the authorization wording.
+
+To run it, unzip, then `npm install` and `npm run dev`.

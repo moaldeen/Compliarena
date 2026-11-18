@@ -1,0 +1,23 @@
+**Q1 — Layout, elements, and defaults**
+
+The screen uses a fixed mobile frame with a brand header and close button, an interactive landscape preview, a short headline, two benefit rows, yearly and monthly plan choices, a primary continuation button, billing disclosures, and legal links.
+
+The yearly plan is selected by default to support revenue goals. Its savings label and monthly equivalent explain its value, while the full yearly charge remains visible. The monthly option is equally selectable, and changing plans updates the continuation button and billing text.
+
+Plan selection, pricing, renewal information, and an exit control are essential to an informed subscription decision. Account fields and payment inputs were excluded because they are unnecessary at this stage; a production Android app would use Google Play’s purchase flow. The image comparison is optional engagement content. Terms, privacy, and restore purchases provide supporting information without crowding the main offer.
+
+**Q2 — Background context**
+
+The photo-editing context shaped the landscape preview and benefits around filters, editing tools, and exports. Android and Google Play distribution shaped the cancellation wording, purchase-review explanation, and restore-purchases control.
+
+The subscription-policy requirement guided disclosure of the actual recurring charge, automatic renewal, cancellation location, and absence of a free trial. Closing the offer opens the free editor, giving users a clear way to leave.
+
+No actual Android manifest file was supplied. I used the provided application properties as background context; they did not justify extra inputs or a different screen structure. The fixed-frame constraint directly drove compact spacing and limited decorative content. This web prototype demonstrates the interface; production compliance also requires real billing integration and published legal policies.
+
+**Q3 — Goals and trade-offs**
+
+I prioritized an understandable offer, fast plan selection, and an accessible exit. The visual preview and short benefit copy support conversion; the default yearly plan supports revenue. Visible prices and renewal terms help users assess that offer before continuing.
+
+The main offer requires only plan selection and continuation. Supporting details open in dialogs, keeping the screen compact. The prototype adds a review dialog to explain the selected commitment and its simulated purchase behavior.
+
+The free editor provides an immediate creative action after dismissal, supporting engagement and potential retention. These are design intentions; conversion and day-1/day-7 retention improvements would require measurement.

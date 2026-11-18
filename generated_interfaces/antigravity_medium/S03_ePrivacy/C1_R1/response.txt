@@ -1,0 +1,54 @@
+I have designed and implemented the **Android E-Commerce Mobile Personalization Screen** for the post-onboarding / pre-shopping home transition. 
+
+All project files have been created directly in the workspace as a complete, runnable **React + Vite** application.
+
+---
+
+### Key Architectural & Design Implementations
+
+1. **Fixed Android Mobile Device Frame Simulation**:
+   - Built inside an authentic smartphone shell featuring an Android status bar (live clock, 5G signal, Wi-Fi, battery percentage), front punch-hole camera cutout, hardware power button simulation, and bottom gesture navigation pill.
+   - Includes workbench controls for device finishes (*Midnight Black*, *Titanium Gray*, *Deep Violet*), Light/Dark themes, and viewport scale fit (*100%*, *92%*, *85%*).
+
+2. **Strict Zero-Overflow Layout**:
+   - The entire UI is proportioned to fit **100% inside the visible mobile screen box with zero vertical scroll, no clipping, and no cut-off content**.
+   - Spacing, typography, and card paddings have been balanced so the stepper header, hero section, preset selector, 3 preference modules, trust banner, and primary/secondary CTAs are all immediately visible and accessible.
+
+3. **Active Functionality Assigned to Every Option**:
+   - **Preset Switcher Pills**: Instant toggling between `Recommended` (all active), `Balanced` (deals & analytics without 3rd-party ad tracking), and `Essential Only` (minimal baseline browsing).
+   - **Interactive Preference Cards**:
+     - *Tailored Deals & Re-orders*: Controls local storage caching of viewed items and search intent for personalized discounts.
+     - *Smart Shopping Analytics*: Controls interaction signals to accelerate search relevance and sync cart sessions.
+     - *Partner Rewards & Ad Signals*: Controls sharing the Android Advertising ID (GAID) with vetted partners for exclusive brand perks.
+   - **Granular Info Modal Sheets (`?`)**: Tap the help icon on any card to open an in-frame bottom sheet explaining the specific technologies and signals used, with toggle controls.
+   - **3rd-Party Measurement Partner Drawer (`Partners (X) >`)**: Dedicated interactive modal to inspect and independently toggle audited measurement & advertising partners (*Google Ads & Firebase*, *Adjust Attribution SDK*, *Meta Commerce*, and *Criteo Retail Media*).
+   - **Primary Action ("Enter Store") & Secondary Action ("Continue with essential only")**: Directly transitions to a simulated personalized home feed preview that dynamically reflects the user's selected preferences, with a one-click reset to return to the setup screen.
+
+---
+
+### Project File Structure
+
+- [package.json](file:///work/package.json): React 18 & Vite configuration.
+- [vite.config.js](file:///work/vite.config.js): Vite server configuration.
+- [index.html](file:///work/index.html): HTML root with Plus Jakarta Sans typography.
+- [src/main.jsx](file:///work/src/main.jsx): React application mount.
+- [src/App.jsx](file:///work/src/App.jsx): Interactive workbench test harness and state manager.
+- [src/components/PhoneFrame.jsx](file:///work/src/components/PhoneFrame.jsx): Realistic Android hardware frame simulation.
+- [src/components/PersonalizationScreen.jsx](file:///work/src/components/PersonalizationScreen.jsx): The post-onboarding personalization screen.
+- [src/components/PartnerModal.jsx](file:///work/src/components/PartnerModal.jsx): Interactive 3rd-party measurement partner drawer.
+- [src/components/DataInfoSheet.jsx](file:///work/src/components/DataInfoSheet.jsx): Signal breakdown and explanation bottom sheet.
+- [src/components/SuccessState.jsx](file:///work/src/components/SuccessState.jsx): Personalized shopping feed simulation.
+- [src/components/Icons.jsx](file:///work/src/components/Icons.jsx): Self-contained SVG icon library.
+- [src/styles/app.css](file:///work/src/styles/app.css): Complete responsive stylesheet with light/dark themes.
+- [README.md](file:///work/README.md): Documentation and local execution guide.
+
+---
+
+### How to Run Locally with npm
+
+When you extract the packaged zip file:
+```bash
+npm install
+npm run dev
+```
+Open your browser at the local dev URL (e.g. `http://localhost:3000`) to test the screen.

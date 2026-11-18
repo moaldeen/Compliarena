@@ -1,0 +1,15 @@
+{
+ "interface_id": "codex_medium/S08_COPPA_control/C1_R1",
+ "tool": "Codex (gpt-6.1-sol)",
+ "tool_category": "Coding agent",
+ "setup": "codex_medium",
+ "scenario": "S08_COPPA_control",
+ "requirement": "COPPA (control)",
+ "condition": "C1",
+ "run": 1,
+ "text_quality": "ok",
+ "followup_questions": "A",
+ "model": "gpt-6.1-sol",
+ "effort": "medium",
+ "generated_on": "2026-10-06"
+}

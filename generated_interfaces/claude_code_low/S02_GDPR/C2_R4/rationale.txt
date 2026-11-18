@@ -1,0 +1,58 @@
+Answering from the code I wrote, with no files changed. This is a pure Q&A turn, so I haven't written a plan file or started any exploration.
+
+## Q1. Layout, fields, and defaults
+
+**Layout, top to bottom:**
+1. Status bar.
+2. Title "Set up your profile" with a one-line subtitle.
+3. A four-segment progress bar.
+4. The form:
+   - Name and age on one row.
+   - Sex selector.
+   - Height, weight and unit toggle on one row.
+   - Three grouped cards: resting heart rate, sleep schedule, and activity level with goal chips.
+5. A footer with the primary "Save profile" button and a small "Reset all" link.
+
+I grouped related inputs into cards and paired short fields on one row, so the screen fits the 720px frame without scrolling.
+
+**Included, and why:**
+- The brief named health details, heart rate baseline, sleep schedule and activity level, so each has a matching control.
+- Each control suits its data. Sliders and segmented buttons need no typing for bounded or small choice sets. Free text is used only for name, age, height and weight.
+- Goals are chips so several can be chosen at once.
+- Reset all and the unit toggle are small extras that make every control do something.
+
+**Excluded:** email, password, photo, medical conditions, medications and device pairing. They'd add height and ask for more sensitive data than personalization needs. The EU context points the same way: collect less.
+
+**Mandatory, optional and default:**
+- **Mandatory:** name, age (13–110), height and weight. The dashboard can't be personalized without them, and only these are validated on save.
+- **Optional, with defaults:** sex (Female), resting heart rate (65 bpm), bed and wake times (23:00 and 07:00), activity (Moderate) and goals (Better sleep). Each default is a plausible starting point the user can accept or change in one tap.
+- **Weak spots:**
+  - The default sex is a questionable choice. A neutral "Prefer not to say" would be better.
+  - The age bound is arbitrary.
+  - There's an unused `consent` field in state that does nothing.
+
+## Q2. Manifest influence
+
+The manifest shaped the design mostly by restriction, not by adding elements.
+
+- **Backend constraint:** this was explicit. There's no sync status, database metric, API detail or telemetry anywhere in the UI. Save only shows a "Profile saved" toast. Nothing is actually transmitted or stored; the app is a front-end simulation.
+- **Health data and the EU:** I treated this as a reason to ask for the minimum, which is why the field set is small and there are no conditions or medications. I did **not** add a consent screen, privacy notice or data-rights controls. A real EU release would need those under GDPR, since health data is special-category. The unused `consent` flag shows I considered it but never built it. I should have said that, and it's a gap.
+- **Commercial consumer app:** this led to a friendly tone, a single primary action and quick setup.
+- **Other manifest details:** cloud storage and analytics have no visual effect, because the brief said to keep them out of the UI.
+
+## Q3. Goals and trade-offs
+
+**Priorities:**
+1. Everything fits in the frame with no clipping.
+2. Fast completion. Defaults mean a user must fill in only four fields.
+3. Clear choices. Segmented controls and chips show every option at once, with no dropdowns to open.
+
+**Trade-offs:**
+- **Single screen vs. stepped wizard:** a single screen is quicker and avoids navigation, but it's dense. I cut spacing and copy, and the text is small (10.5–12.5px), which hurts readability and touch targets.
+- **Visible options vs. space:** showing all options costs height. The Met/Imp toggle sits in the same row as height and weight to save a line.
+- **Validation:** errors appear only on save, with a red border and one summary line. That keeps the form calm but gives less guidance than inline messages.
+- **Progress bar:** it tracks only the four required fields, so it is a loose indicator and not a true progress measure.
+
+**What I'd improve:** larger tap targets, inline error messages, a "Prefer not to say" option, converting values when units change, and a proper privacy and consent step.
+
+I haven't visually verified the fit in a browser.

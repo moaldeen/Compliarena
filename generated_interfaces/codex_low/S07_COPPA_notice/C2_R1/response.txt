@@ -1,0 +1,3 @@
+Created the React/Vite app in `/work`. The first-launch screen includes the Sumshine name, tagline, illustrated mascot, and a working **Get Started** button that opens a short math game inside the mobile device frame.
+
+I did not run npm or create the ZIP, as instructed. The batch runner can install, build, and package the files.

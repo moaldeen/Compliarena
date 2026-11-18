@@ -1,0 +1,53 @@
+:root {
+  --ink: #241c16;
+  --muted: #74685e;
+  --faint: #a39488;
+  --line: #eadfd3;
+  --paper: #f4efe8;
+  --card: #fffdfb;
+  --terra: #c24e2a;
+  --terra-soft: #f8e6de;
+  --sage: #215c45;
+  --sage-soft: #e4f2eb;
+  --gold: #8a5a12;
+  --gold-soft: #f8efd8;
+  --danger: #9f2d1c;
+  --shadow: 0 24px 60px rgba(48, 32, 18, 0.28);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #d9cfc3;
+  color: var(--ink);
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--terra);
+  outline-offset: 2px;
+}

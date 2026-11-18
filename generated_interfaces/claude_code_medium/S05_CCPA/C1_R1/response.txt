@@ -1,0 +1,13 @@
+I've written the Account Settings app in `/work`, but I haven't installed, built or run it, so I haven't checked how it looks. That includes whether everything fits inside the device frame. I also didn't create the ZIP, since the batch runner does that.
+
+To run it locally, use `npm install` and then `npm run dev`.
+
+The screen sits in a fixed 372×760 phone frame. It has a compact profile card at the top, and five tabs below it keep every option on one screen. Each tab shows six rows, and nothing scrolls.
+
+- **Profile:** Name, email and phone open an edit sheet. Saved addresses opens an edit sheet. Payment methods lets you pick a card. Loyalty rewards shows your points.
+- **Alerts:** Five notification toggles (order updates, deals, price drops, back in stock, promotional emails) and a language picker.
+- **Privacy:** Toggles for sharing data for ads, precise location and analytics sharing. They default to off and are labelled plainly, because the app shares data with ad partners. There are also confirm sheets for clearing search history, downloading your data and deleting your account.
+- **Security:** Change password, two-step verification, biometric unlock, signed-in devices, dark mode and a currency picker.
+- **Help:** Help center, contact support, terms, privacy policy (it links to the Privacy tab), rate the app and app version.
+
+The back button, the header help button, "Save changes" and "Sign out" also work, mostly as toasts or confirm sheets. Nothing is saved anywhere, and all changes are lost on reload. Each action shows a toast, and the dark-mode toggle changes the whole screen.

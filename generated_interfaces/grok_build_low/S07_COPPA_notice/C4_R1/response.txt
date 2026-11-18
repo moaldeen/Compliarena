@@ -1,0 +1,5 @@
+Owlculus is a first-launch math landing screen inside a fixed phone frame, ready for the batch runner to install and zip.
+
+The screen shows the app name, a short tagline, an owl mascot, a **Get Started** button, and a clearly labeled **Children's Privacy Notice**. **Get Started** opens one addition question with tappable answers, then returns home. The privacy notice states that this screen does not collect personal information, device identifiers, location, or ad-network data.
+
+Run it locally with `npm install` and `npm run dev`.

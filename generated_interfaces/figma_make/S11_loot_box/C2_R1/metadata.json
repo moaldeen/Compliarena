@@ -1,0 +1,15 @@
+{
+ "interface_id": "figma_make/S11_loot_box/C2_R1",
+ "tool": "Figma Make",
+ "tool_category": "ProDeGen",
+ "setup": "figma_make",
+ "scenario": "S11_loot_box",
+ "requirement": "Loot-box rules",
+ "condition": "C2",
+ "run": 1,
+ "text_quality": "ok",
+ "followup_questions": "B",
+ "prompt_version": "original (waves 1-2)",
+ "model": "not recorded",
+ "rationale_status": "ok"
+}

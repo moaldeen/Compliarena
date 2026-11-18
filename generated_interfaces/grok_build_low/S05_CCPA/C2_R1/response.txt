@@ -1,0 +1,11 @@
+SOLA Account Settings is a React/Vite app that renders inside a fixed phone frame. Every row does something, and the California privacy controls are on the main list.
+
+- **Profile** edits the name, the email, and the phone, and it shows the Gold loyalty ID.
+- **Preferences** sets the default store, haptics, motion, and recent views.
+- **Notifications** covers orders, delivery, loyalty, and first-party promos.
+- **Addresses and cards** can be added, edited, removed, or set as the default. Cards store only the last four digits.
+- **Security** includes Face unlock, two-step verification, a password change, signing out other devices, and scheduled account deletion with undo.
+- **Privacy** has switches for **Do Not Sell or Share My Personal Information** and **Limit the Use of My Sensitive Personal Information**, plus the notice at collection, the policy, the terms, and a California access, delete, or correct request.
+- **Help** has FAQs and a contact form. **Sign out** returns to a sign-in screen.
+
+The batch runner installs dependencies and packages the app. Locally, use `npm install` and `npm run dev`.

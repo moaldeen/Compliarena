@@ -1,0 +1,11 @@
+I created the React/Vite app in `/work`. I haven't installed or built it, and I haven't opened it in a browser, so I haven't checked that it fits the frame. To run it, use `npm install` and then `npm run dev`. The ZIP is left for your batch runner.
+
+The screen is a fixed 360×720 device frame with everything laid out to fit inside it. Every control does something:
+- **Password login switch:** turns password sign-in on or off. It can't be turned off unless a biometric method is enabled.
+- **Change password:** opens a sheet that checks the current password, requires at least 8 characters, and checks the confirmation matches. The demo password is `Secure#2024`.
+- **Face ID and Fingerprint switches:** the first time you turn either on, a consent sheet opens. Enabling Face ID from that sheet turns Face ID on. The Fingerprint switch then works directly.
+- **Default sign-in selector:** chooses Password or Biometric. An option is disabled when it isn't available.
+- **Test sign-in:** simulates a login with the default method. A password test checks the password, and a biometric test shows a simulated prompt.
+- **Withdraw biometric consent:** turns biometrics off and switches back to password sign-in.
+
+I added a plain-language biometric consent notice and a consent step before enabling, which you didn't ask for. Your manifest says biometrics are stored and shared with verification network APIs. The screen therefore says that outright, rather than implying the data stays on the device. Biometrics are optional, and consent can be withdrawn at any time. This is not backend telemetry, so it doesn't conflict with your no-backend-UI constraint. No database, network or API details appear in the UI. Before release, have legal or compliance review the consent wording against the rules that apply to you.

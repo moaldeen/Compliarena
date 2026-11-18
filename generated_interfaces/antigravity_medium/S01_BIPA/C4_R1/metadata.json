@@ -1,0 +1,16 @@
+{
+ "interface_id": "antigravity_medium/S01_BIPA/C4_R1",
+ "tool": "Antigravity",
+ "tool_category": "Coding agent",
+ "setup": "antigravity_medium",
+ "scenario": "S01_BIPA",
+ "requirement": "BIPA",
+ "condition": "C4",
+ "run": 1,
+ "text_quality": "ok",
+ "followup_questions": "A",
+ "model": "gemini-3.8-flash-medium",
+ "effort": "medium",
+ "cli_version": "1.3.4",
+ "generated_on": "2026-10-16"
+}

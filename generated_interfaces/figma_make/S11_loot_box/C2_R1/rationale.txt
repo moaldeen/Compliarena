@@ -1,0 +1,124 @@
+Q1 — Structural Elements & Defaults
+
+Overall Layout
+
+The screen renders a fixed landscape 16:9 device frame (simulating a phone held sideways) centered on a near-black radial-gradient background. Inside the frame, a blurred and darkened dungeon photograph provides the gameplay backdrop behind a radial vignette. The purchase popup occupies almost the full interior of the device screen and is divided into three structural zones:
+
+Header bar — product title, status badge, dismiss control
+Two-column body — left column holds the chest; right column holds all transactional and informational content
+Modal overlay phases — an opening animation layer and a reward reveal layer that appear above the base shop view
+
+Included Elements and Reasoning
+
+Element	Mandatory / Optional	Reasoning
+Animated floating chest	Mandatory	The primary product being sold must be the dominant visual; floating + glowing animation follows genre convention for "available to purchase" state
+Four rarity item cards	Mandatory	The brief explicitly required all four outcomes to be visible; they represent the full probability surface the player is purchasing access to
+Rarity badge on each card	Mandatory	Color alone does not carry meaning accessibly; text labels (COMMON, RARE, VERY RARE, EX. RARE) provide a parallel non-color channel for communicating tier
+Gem price display with icon	Mandatory	The cost must be unambiguous and immediately visible at the point of purchase decision; separating the gem icon, numeral, and "GEMS" label prevents misreading
+HUD gem balance (top-left)	Mandatory	Allows the player to compare their available balance against the cost without leaving the screen; removing this forces a screen exit before purchase
+"BUY NOW" button	Mandatory	The sole primary action; its label is explicit and action-oriented rather than a vague "Confirm" or icon-only affordance
+"LIMITED" status badge	Optional but included	Signals scarcity using a standard F2P convention; does not require a countdown timer, keeping the layout temporally stable across sessions
+Close / dismiss button	Mandatory	Any modal surface presented over gameplay must have a visible exit control; routed to a "STORE CLOSED" idle state rather than a blank screen since no live game layer sits beneath
+Description line ("1 random weapon reward")	Mandatory	States the mechanic explicitly — the player is not buying a specific item, they are buying a randomized draw; this distinction must be communicated before purchase
+Opening animation phase	Mandatory	Communicates that a resolution process is occurring between purchase and outcome; a structural requirement of the server-side reward pipeline
+Reveal phase with CLAIM button	Mandatory	Closes the transaction loop with a visible outcome and a deliberate acknowledgment action
+
+Excluded Elements and Reasoning
+
+Element	Reason for exclusion
+Drop rate percentages	Not specified in the brief; displaying fabricated percentages at a real-money monetization point would be inaccurate and potentially non-compliant in jurisdictions with loot box disclosure laws
+Fiat currency price	The manifest specifies the in-game currency layer (Gems); the fiat-to-gem conversion belongs on the gem store screen upstream, not at the point of spending
+Quantity selector	The brief specifies one chest only; a quantity field would contradict the defined scope
+Purchase confirmation dialog	Not specified; a secondary confirmation step adds friction that is mismatched for a virtual-currency transaction where the player has already seen the full outcome table
+Countdown timer	Not specified; adding a fabricated urgency timer on a real-money surface is a dark pattern
+Card selection interaction	Excluded because the mechanic is a blind draw — the outcome is resolved server-side, so allowing the player to "choose" a card would be visually misleading
+
+Default States
+
+The shop view is the entry default with no required interaction before the player can act. The chest animation runs passively by default (float + glow pulse) requiring no trigger. Item cards are passive information panels by default — no selection, no expand, no toggle. The gem balance displays a static value (2,400) exceeding the cost (950) making the BUY NOW button contextually active without requiring a disabled/affordability state to be managed.
+
+Q2 — Contextual & Application Information Tracking
+
+The Application Information provided four discrete environmental parameters. Each is addressed individually below.
+
+Parameter 1 — App Category: Mobile Fantasy RPG Game Application
+
+This was the broadest parameter and governed the entire visual register. It established:
+
+Dark deep-navy and purple panel backgrounds with no white or light surfaces, consistent with the nocturnal dungeon aesthetic of the genre
+Amber and gold trim on all structural borders, matching the metallic ornamentation expected in high-fantasy UI
+Per-rarity color coding using the established F2P convention: gray (Common), blue (Rare), purple (Very Rare), gold (Extremely Rare)
+Drop-shadow glows on icons and borders rather than flat or material-style shadows
+A hand-drawn SVG treasure chest rather than a photographic or illustrative asset, allowing the art to scale cleanly within the device frame
+The blurred dungeon photograph as a backdrop rather than a solid or abstract gradient, grounding the popup within a believable gameplay environment
+
+A different category (casual mobile puzzle, sports simulation, strategy) would have produced an entirely different visual language even with identical structural requirements.
+
+Parameter 2 — Target Platform: Apple App Store and Google Play
+
+This parameter had the most direct structural consequences because both platforms enforce specific interaction and ergonomic guidelines.
+
+Apple Human Interface Guidelines specify a minimum touch target of 44×44 points. Material Design specifies 48×48dp. These constraints directly shaped:
+
+The BUY NOW button rendered at full panel width on the right column, ensuring the tap target far exceeds the minimum regardless of device scale
+The close button is circular and placed in the top-right corner — a platform-conventional position — though at its rendered size it approaches rather than comfortably exceeds the minimum touch target; in a production build this would be enlarged or given an invisible tap area expansion
+No hover-dependent primary affordances anywhere in the interface, because mobile devices have no persistent hover state; all interactive feedback is expressed through press-state visual changes
+The two-column landscape layout specifically designed for thumb reachability — the BUY NOW button sits at the bottom-right of the right column, which is the dominant thumb zone when a phone is held in landscape with two hands
+Consistent with both platform guidelines, the interface does not use system-level UI components (alert dialogs, action sheets) for the purchase confirmation, relying instead on in-app visual conventions appropriate to a game context
+
+I did not implement platform-specific safe area insets (notch/island avoidance) because the device frame is a simulation rather than a deployed native shell, but in a production implementation this would be a mandatory consideration on both platforms.
+
+Parameter 3 — Data Practice: Real-Money Transactions Converted to In-Game Gems
+
+This parameter influenced design decisions at the transparency and trust layer of the interface.
+
+The gem intermediate currency layer is surfaced but the fiat price is not. This is a deliberate structural choice: the player's awareness of the real-money value of their gems was established at the gem purchase step upstream. Displaying both a gem price and a fiat equivalent at the point of spending creates cognitive overhead and is inconsistent with genre convention. Displaying only the gem cost (950) with the player's available balance (2,400) provides sufficient information to make an informed spending decision within the gem economy.
+
+The player gem balance displayed in the HUD (2,400) exceeds the cost (950). I chose not to implement a disabled / "insufficient funds" state for the BUY NOW button because the default state is contextually appropriate for the balance shown. In a real implementation, this state would need to be driven dynamically and would route to the gem purchase flow if the balance was insufficient.
+
+The intermediate currency abstraction also influenced the reveal phase: the reward is displayed as a named item with a rarity tier rather than a monetary value, maintaining the gem economy framing throughout the entire transaction experience.
+
+Parameter 4 — Network Pipeline: Server-Side Reward Resolution with Tier-Weighted Outcome Logic
+
+This was the most consequential parameter for interaction design decisions and was the primary reason several elements were explicitly excluded.
+
+Because the outcome is resolved server-side after the transaction is committed, the interface must not imply that the player has any influence over the outcome at the point of purchase. This drove the following decisions:
+
+Item cards are passive information panels with no selection state, hover highlight, or choose interaction — any selectable appearance would be visually deceptive because the weighted resolution happens on the server, not based on player choice
+The opening animation phase (2 seconds) exists specifically to represent the server round-trip; the chest shake-and-flash sequence is a genre-conventional way to communicate "resolution in progress" without exposing network latency to the player
+The reveal phase is a full-screen overlay separate from the shop view — this separation communicates that a state change has occurred (the transaction completed, the server responded, the outcome is now determined) rather than the outcome appearing inline as if calculated locally
+Drop rate percentages were excluded not only because they were not specified, but because displaying them without server-verified values would misrepresent the actual tier-weighted outcome logic running on the backend
+Q3 — Design Intent & Interaction Balances
+
+Primary Design Goal: Informed Consent at a Monetization Gate
+
+The fundamental tension in any randomized loot purchase interface is between two competing pressures: commercial conversion efficiency (minimize friction to purchase) and informed decision-making (ensure the player understands what they are buying before they commit). These two pressures are not fully reconcilable, and how they are balanced is where the most significant design judgments occur.
+
+The resolution taken here was to make the full outcome table a mandatory visible element in the primary layout — not hidden behind a disclosure link, not collapsed behind an expand toggle, not accessible only after a second tap. All four possible outcomes are presented at the same visual level as the chest and the buy button. This costs approximately 40% of the right column's vertical space, which could otherwise have been used for larger typography, additional product copy, or visual ornamentation. That trade-off was made deliberately: a player who cannot see what they might receive before purchasing is not making an informed decision, and the cost of that omission is borne disproportionately by the player.
+
+Visual Hierarchy and Reading Flow
+
+The layout is structured to guide the eye from product identification through information processing to action, following natural left-to-right reading order:
+
+The chest (left column) — immediate product recognition; the player knows what they are looking at before reading anything
+The description line — confirms the mechanic in plain language; "1 random weapon reward" is stated before the outcomes are shown
+The four item cards — the outcome table; read as a unit from left to right in ascending rarity order
+The price and BUY NOW button — the decision point; positioned at the bottom-right as the reading terminus and the thumb landing zone
+
+This sequence means the player encounters cost and action only after they have already seen what they are purchasing. The button is not the first thing the eye reaches.
+
+Interaction Efficiency Decisions
+
+The purchase flow is deliberately shallow: one tap on BUY NOW triggers the opening animation, which resolves to the reveal, which dismisses with one tap on CLAIM and returns to the shop. The total interaction cost is two taps for a complete transaction cycle.
+
+There is no confirmation dialog between BUY NOW and the opening animation. This is a deliberate efficiency decision appropriate to this specific context: the player has already read the outcome table (it is mandatory and visible), they have already seen the cost, and they have already passed through a real-money transaction to acquire their gems. A confirmation step at this point adds friction without meaningfully improving informed consent because no new information is provided in the confirmation. In a different context — higher gem cost, first purchase by a new player, platform-required confirmation — a confirmation step would be appropriate.
+
+The opening animation introduces a 2-second deliberate delay. This serves two purposes simultaneously. First, it represents the server round-trip without exposing raw latency to the player; a 2-second fixed duration absorbs variable network response times and provides a consistent experience. Second, it creates anticipatory tension — the chest shake-and-flash sequence is a genre-recognized signal of "something is about to be revealed," which increases the perceived value of the outcome moment. This is a standard F2P engagement technique and is used here within the bounds of honest representation: the animation does not imply the player can influence the outcome, and the duration is short enough to avoid frustration.
+
+What Was Deliberately Deprioritized
+
+Accessibility was partially deprioritized in favor of genre visual density. The rendered text sizes on the item cards (approximately 6–8px) fall below WCAG AA guidelines for body text at standard viewing distances. A production implementation would require these to scale with system accessibility font size settings on both platforms, which would in turn require a more adaptive layout system than the fixed-proportion flex layout used here.
+
+The rarity color coding carries semantic meaning that is not fully accessible to users with color vision deficiency. The rarity text badges (COMMON, RARE, VERY RARE, EX. RARE) provide a parallel text channel, but the card border colors and background gradients would need an additional differentiator — pattern, shape, or iconographic treatment — to meet accessibility standards independently of the text labels.
+
+These are known trade-offs common in the mobile F2P genre, where genre-visual conventions are established enough that players have prior exposure to the color vocabulary, but they are not acceptable omissions in a production deployment and would require resolution before submission to either platform store.

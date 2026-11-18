@@ -1,0 +1,3 @@
+I created the React/Vite Account Settings app in `/work`, with a device frame and interactive screens for profile, shopping, preferences, security, privacy, legal information, and support.
+
+The source files are [package.json](/work/package.json), [index.html](/work/index.html), [App.jsx](/work/src/App.jsx), and [style.css](/work/src/style.css). I did not run npm or create the ZIP; the batch runner can package it. The shell was unavailable, so I could not run a build check.
